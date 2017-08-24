@@ -1,7 +1,8 @@
 import { Component, OnInit, Directive, ElementRef } from '@angular/core';
-import {single} from './data';
-import {single2} from './data2';
-import {TownService} from '../services/town.service';
+import { single } from './data';
+import { single2 } from './data2';
+import { TownService } from '../services/town.service';
+import { ColorHelper } from '../../common/color.helper';
 
 @Component({
   selector: 'app-charttwo',
@@ -16,6 +17,10 @@ export class CharttwoComponent implements OnInit {
   count: number = 123;
   single: any[]; 
   single2: any[]; 
+  //invertColor: any[];
+
+  //invertColor.invertColor.col
+  colors: any;
   //single2: any[];    
   //view: any[] =[700, 400]; // []; //
   //@el Input('view') view: string;
@@ -33,7 +38,10 @@ export class CharttwoComponent implements OnInit {
   yAxisLabel = 'Population';
 
   colorScheme = {    
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    //domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: [
+      '#bf9d76', '#e99450', '#d89f59', '#f2dfa7', '#a5d7c6', '#7794b1', '#afafaf', '#707160', '#ba9383', '#d9d5c3'
+    ]
   };
 
   constructor(private townService: TownService, el: ElementRef) {     
@@ -60,12 +68,12 @@ export class CharttwoComponent implements OnInit {
     //   console.log('ssssssssssss');
     // }, 500);
 
-    console.log('ngOnInit() ngOnInit() ngOnInit()');
+    //console.log('ngOnInit() ngOnInit() ngOnInit()');
 
   }
 
   onSelect(event) {
-    console.log(event, this.count);
+    //console.log(event, this.count);
     //console.log("debug ", this.single[0].name);
     //alert(JSON.stringify(event));
     Object.assign(this, {single});
@@ -76,6 +84,7 @@ export class CharttwoComponent implements OnInit {
       this.single[0].name = "pray(1)";
       this.single[1] = {"name": "Starbucks(1)", "value": 4000000+this.count};
       //@view = [700, 400];      
+      this.setColors('fire');
     }
     else {
       // this.townService.searchGitPromise("fish").
@@ -94,7 +103,9 @@ export class CharttwoComponent implements OnInit {
       //this.townService.searchGitObservable2('mastronardif').subscribe(
       this.townService.searchGit('mastronardi').subscribe(      
           res => {            
-            console.log("\t", event, this.count);
+            //console.log("\t", event, this.count);
+            this.setColors('vivid');
+
             this.single = this.single2;            
             this.single[0] = {name: "pray(2)", value:   this.single[0].value};            
             this.single[1] = {"name": "Starbucks", "value": 4000000+wasCount};
@@ -107,6 +118,13 @@ export class CharttwoComponent implements OnInit {
     }
 
     this.count++;        
+  }
+
+  setColors(name): void {
+    // //this.colorScheme
+    // //const scheme = { domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'] };
+    this.colors = new ColorHelper(name, null, null);// (scheme, 'ordinal', [], null);
+    this.colorScheme = { domain: this.colors.colorDomain}; //scheme; //this.colors.colorDomain; // // scheme; //this.colors;
   }
 
 }
