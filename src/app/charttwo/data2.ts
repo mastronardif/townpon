@@ -2,10 +2,19 @@ export var single2 = [
   {
     "name": "Casa Da Pizza",
     "value": 8940000
-  },  
+  },
+  {
+    "name": "Starbucks",
+    "value": 4000010
+  },
+  {
+    "name": "Trader Joes",
+    "value": 3200020
+  }
+  ,
   {
     "name": "Ferros",
-    "value": 5000000
+    "value": 5000013
   },
   {
     "name": "Cordoba",
@@ -18,7 +27,7 @@ export var single2 = [
   },
   {
     "name": "XChocalte",
-    "value": 7200000
+    "value": 7200010
   }
 ];
 

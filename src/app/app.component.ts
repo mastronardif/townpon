@@ -16,7 +16,7 @@ export class AppComponent {
       "value": 5000000
     },
     {
-      "name": "Fuck hole",
+      "name": "Canada",
       "value": 7200000
     }
   ];
