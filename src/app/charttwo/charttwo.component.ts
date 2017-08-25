@@ -1,6 +1,7 @@
 import { Component, OnInit, Directive, ElementRef } from '@angular/core';
-import { single } from './data';
-import { single2 } from './data2';
+import { single } from  './westfieldfood1'; //'./data';
+import { single2 } from './westfieldfood';
+//import { single2 } from './data2';
 import { TownService } from '../services/town.service';
 import { ColorHelper } from '../../common/color.helper';
 
@@ -22,20 +23,20 @@ export class CharttwoComponent implements OnInit {
   //invertColor.invertColor.col
   colors: any;
   //single2: any[];    
-  //view: any[] =[700, 400]; // []; //
+  //view: any[] =[390, 1400]; // []; //
   //@el Input('view') view: string;
   //@Input() someattribute: string;
  // @ElementRef() asdf: string;
 
   // options
-  showXAxis = true;
-  showYAxis = true;
+  //showXAxis = true;
+  //showYAxis = true;
   gradient = false;
-  showLegend = true;
-  showXAxisLabel = true;
-  xAxisLabel = 'Country';
-  showYAxisLabel = true;
-  yAxisLabel = 'Population';
+  //showLegend = true;
+  //showXAxisLabel = true;
+  //xAxisLabel = 'Country';
+  //showYAxisLabel = true;
+  //yAxisLabel = 'Population';
 
   colorScheme = {    
     //domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
@@ -76,13 +77,19 @@ export class CharttwoComponent implements OnInit {
     //console.log(event, this.count);
     //console.log("debug ", this.single[0].name);
     //alert(JSON.stringify(event));
+
     Object.assign(this, {single});
+    //this.single = this.single2;
+    //Object.assign(this, {single2});
     //console.log(event, this.count);
 
     if(this.count % 2) {
-      this.single = this.single;
-      this.single[0].name = "pray(1)";
-      this.single[1] = {"name": "Starbucks(1)", "value": 4000000+this.count};
+      //this.single = this.single;
+      //this.single[0].name = "pray(1)";
+      this.single[0].value =  this.single[0].value+1;
+      let name=this.single[1].name;      
+      //this.single[1].value =  this.single[1].value+this.count;
+      //this.single[1] = {"name": name, "value": this.single[1].value+this.count};
       //@view = [700, 400];      
       this.setColors('fire');
     }
@@ -106,9 +113,11 @@ export class CharttwoComponent implements OnInit {
             //console.log("\t", event, this.count);
             this.setColors('vivid');
 
-            this.single = this.single2;            
-            this.single[0] = {name: "pray(2)", value:   this.single[0].value};            
-            this.single[1] = {"name": "Starbucks", "value": 4000000+wasCount};
+            this.single = this.single2;  
+            let name = `${this.single[0].name} ZZ`;    
+            this.single[0].value =  this.single[0].value+wasCount;      
+            //this.single[0] = {name: "pray(2)", value:   this.single[0].value};            
+            //this.single[1] = {"name": "Starbucks", "value": 4000000+wasCount};
           },           
          err => {
            alert("FM err = " + err);
