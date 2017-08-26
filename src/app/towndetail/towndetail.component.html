@@ -1,7 +1,12 @@
-<p>
-  towndetail works!
-</p>
-Param: {{param}}
-<h2 style="font-size: 53%;">{{results}} results!</h2>
 
-<img src={{imagePath}} width="50" height="50"/>
+<div *ngIf="param == 'Starbucks'">
+<div class="center-div" style="border: solid; width: 300px; height: 200px" >
+    <p>
+        towndetail works!<br/>
+        <img src={{imagePath}} width="50" height="50"/>
+        <span style="color:red;">{{param}}</span><br/>
+        <span style="font-size: 13%;">{{results}} results!</span>        
+      </p>
+</div>
+</div>
+

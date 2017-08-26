@@ -17,7 +17,6 @@ export class TowndetailComponent implements OnInit {
   constructor(private townService: TownService,
               private route: ActivatedRoute,
               private location: Location) { 
-
   }
 
   ngOnInit() {

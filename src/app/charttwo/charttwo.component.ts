@@ -62,33 +62,18 @@ export class CharttwoComponent implements OnInit {
 
   private timer;
   ngOnInit() {
-    ////
-    // this.route.paramMap    
-    // .switchMap((params: ParamMap) => this.townService.searchGit(String(+params.get('id'))))
-    // .subscribe(res => {
-    //   console.log("this.route.paramMap", res);
-    //   this.setColors('vivid');
-    // },           
-    // err => {
-    //   alert("FM err = " + err);
-    //   console.log(err);
-    // });
-    ////
-
     let delta = 5000;
     this.timer = setInterval(() => 
       {
         this.onSelect(null);        
         //console.log(`tick tock every ${delta}`);
-      }, delta);
-    
+      }, delta);    
 
     // this.timer = setTimeout(() => 
     // {
     //   alert('this.onSelect(null)')
     //   console.log('ssssssssssss');
     // }, 500);
-
     //console.log('ngOnInit() ngOnInit() ngOnInit()');
 
   }
@@ -101,7 +86,7 @@ export class CharttwoComponent implements OnInit {
     Object.assign(this, {single});
     //this.single = this.single2;
     //Object.assign(this, {single2});
-    console.log(event, this.count);
+    //console.log(event, this.count);
 
     if (event != null) {
       this.getCoupon(event);
@@ -157,12 +142,13 @@ export class CharttwoComponent implements OnInit {
 
   getCoupon(event): void {    
     console.log('getCoupon', event);
-    this.setColors('cool');
+    this.setColors('night');
     //alert(JSON.stringify(event));
     //this.router.navigate(['/detail', 123]);
     // route to ____
-    //let link = ['/detail', 'hero.id'];
-    //this.router.navigate(link);
+    let id = event.name;
+    let link = ['/detail', id];
+    this.router.navigate(link);
   }
 
   setColors(name): void {
