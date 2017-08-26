@@ -29,6 +29,42 @@ export class TownService {
   ]
   };
   constructor(private http: Http, private httpClient: HttpClient) { }
+
+  public getCoupon(searchText: string): Observable<any> {
+    //const searchText = 'js';
+    
+    console.log("searchGit: ", searchText);    
+    searchText= "15300";
+    const url = 'http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + searchText;
+
+      //const url = "http://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink";     
+    //  const url = 'http://api.github.com/search/users?q=' + searchText;
+    //const url = 'http://localhost:3000/pingcors?ass=wipe'; //http://localhost:4200/detail/11'; //'api/heroes';
+    //const  url = 'http://date.jsontest.com/?service=ip'; //http://echo.jsontest.com/key/value/one/two';
+
+      //console.log('here', url);
+
+      return this.http.get(url).map(
+        res => {
+          let results =  {}; //[];//[{name: "Fred", value: 123123}];
+        const data = res.json();        
+        let items = [];
+        if (res){
+          //data.items.forEach(element => {
+            data.drinks.forEach(element => {
+            //let val = element.id;
+            let val = element.idDrink.toString().substring(0, 6);            
+            results = {name: element.strDrink, value: val, id: element.idDrink, thumb: element.strDrinkThumb};
+          });
+        }
+        //console.log(data);
+        //console.log(`data =  ${JSON.stringify(data)}`);
+
+        return results; //.slice(0, 21); //{lef:111, right: 222};//data;      
+      });
+      
+    }
+
  
   public searchGitPromise(searchText: string): Promise<any> {
         // cheesy crap for the rest local api debacle.

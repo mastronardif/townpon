@@ -9,6 +9,10 @@ import { TownService } from '../services/town.service'
   styleUrls: ['./towndetail.component.css']
 })
 export class TowndetailComponent implements OnInit {
+  results: any;
+  result: any;
+  param: string;
+  imagePath: string;
 
   constructor(private townService: TownService,
               private route: ActivatedRoute,
@@ -18,8 +22,19 @@ export class TowndetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap    
-    .switchMap((params: ParamMap) => this.townService.searchGit(String(+params.get('id'))))
-    .subscribe(res => console.log("towndetail.component.ts this.route.paramMap", res));
+    .switchMap((params: ParamMap) => 
+  (this.param = params.get('id'),  
+  this.townService.getCoupon(String(+params.get('id'))) )
+   )
+    .subscribe(res => {
+      
+      console.log("towndetail.component.ts this.route.paramMap", res);
+      this.result = res;
+      this.results = JSON.stringify(res);
+      this.imagePath = res.thumb;
+      console.log("############ results = ", this.results);
+
+      });
 
     // this.heroService.getHero(+params.get('id')))
     // .subscribe(hero => this.hero = hero);

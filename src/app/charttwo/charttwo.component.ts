@@ -4,7 +4,7 @@ import { single2 } from './westfieldfood';
 //import { single2 } from './data2';
 import { TownService } from '../services/town.service';
 import { ColorHelper } from '../../common/color.helper';
-//import { Router }            from '@angular/router';
+import { Router }            from '@angular/router';
 import { ActivatedRoute, ParamMap} from '@angular/router';
 //import { Location } from '@angular/common';
 
@@ -51,7 +51,7 @@ export class CharttwoComponent implements OnInit {
   constructor(private townService: TownService,
     private route: ActivatedRoute,
     //private location: Location,
-    //private router: Router, 
+    private router: Router, 
     el: ElementRef) {     
     //el.nativeElement.view = [70, 40]; // wtf
 
@@ -163,7 +163,6 @@ export class CharttwoComponent implements OnInit {
     // route to ____
     //let link = ['/detail', 'hero.id'];
     //this.router.navigate(link);
-
   }
 
   setColors(name): void {
