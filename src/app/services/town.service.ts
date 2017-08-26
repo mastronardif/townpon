@@ -80,7 +80,7 @@ export class TownService {
 
   public searchGit(searchText: string): Observable<any> {
     //const searchText = 'js';
-    //console.log(searchText);
+    console.log("searchGit: ", searchText);
                 
       //const url = 'http://api.github.com/search/users?q=' + searchText;
       const url = "http://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink";

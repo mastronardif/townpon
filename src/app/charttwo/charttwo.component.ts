@@ -4,6 +4,9 @@ import { single2 } from './westfieldfood';
 //import { single2 } from './data2';
 import { TownService } from '../services/town.service';
 import { ColorHelper } from '../../common/color.helper';
+//import { Router }            from '@angular/router';
+import { ActivatedRoute, ParamMap} from '@angular/router';
+//import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-charttwo',
@@ -45,7 +48,11 @@ export class CharttwoComponent implements OnInit {
     ]
   };
 
-  constructor(private townService: TownService, el: ElementRef) {     
+  constructor(private townService: TownService,
+    private route: ActivatedRoute,
+    //private location: Location,
+    //private router: Router, 
+    el: ElementRef) {     
     //el.nativeElement.view = [70, 40]; // wtf
 
     Object.assign(this, {single});
@@ -55,6 +62,19 @@ export class CharttwoComponent implements OnInit {
 
   private timer;
   ngOnInit() {
+    ////
+    // this.route.paramMap    
+    // .switchMap((params: ParamMap) => this.townService.searchGit(String(+params.get('id'))))
+    // .subscribe(res => {
+    //   console.log("this.route.paramMap", res);
+    //   this.setColors('vivid');
+    // },           
+    // err => {
+    //   alert("FM err = " + err);
+    //   console.log(err);
+    // });
+    ////
+
     let delta = 5000;
     this.timer = setInterval(() => 
       {
@@ -81,8 +101,14 @@ export class CharttwoComponent implements OnInit {
     Object.assign(this, {single});
     //this.single = this.single2;
     //Object.assign(this, {single2});
-    //console.log(event, this.count);
+    console.log(event, this.count);
 
+    if (event != null) {
+      this.getCoupon(event);
+      return;
+      //this.townService.getCoupon(event);
+    }
+    
     if(this.count % 2) {
       //this.single = this.single;
       //this.single[0].name = "pray(1)";
@@ -127,6 +153,17 @@ export class CharttwoComponent implements OnInit {
     }
 
     this.count++;        
+  }
+
+  getCoupon(event): void {    
+    console.log('getCoupon', event);
+    this.setColors('cool');
+    //alert(JSON.stringify(event));
+    //this.router.navigate(['/detail', 123]);
+    // route to ____
+    //let link = ['/detail', 'hero.id'];
+    //this.router.navigate(link);
+
   }
 
   setColors(name): void {
