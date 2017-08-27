@@ -148,7 +148,9 @@ export class CharttwoComponent implements OnInit {
     // route to ____
     let id = event.name;
     let link = ['/detail', id];
-    this.router.navigate(link);
+    //this.router.navigate(link);
+    this.router.navigate(link, { replaceUrl: false, skipLocationChange: true });
+    //this.router.navigate(['/detail'], { queryParams: { id: '1FUCKYOU' }  }); 
   }
 
   setColors(name): void {

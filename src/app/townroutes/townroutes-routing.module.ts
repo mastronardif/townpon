@@ -4,7 +4,8 @@ import { TowndetailComponent }  from '../towndetail/towndetail.component';
 
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/detail', pathMatch: 'full' },
+  //{ path: '', redirectTo: '/detail', pathMatch: 'full' },
+  { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: 'detail', component: TowndetailComponent },
   { path: 'detail/:id', component: TowndetailComponent}
 ];
