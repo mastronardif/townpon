@@ -2,12 +2,12 @@
 <div *ngIf="param">
 <div class="center-div" style="border: solid; width: 300px; height: 200px" >
     <p>
-       The coupon!<br/>
+       {{discount}}<br/>
         <img src={{imagePath}} width="50" height="50"/>
         <span style="color:red;">{{param}}</span><br/>
 
         <button (click)="reserveCoupon()" md-button>claim coupon</button> 
-        <button (click)="reserveCoupon()" md-button>close</button> 
+        <button (click)="reserveCoupon()" md-button>never mind</button> 
         <span style="font-size: 13%;">{{results}} results!</span>  
 
     </p>

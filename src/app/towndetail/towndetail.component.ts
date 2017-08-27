@@ -13,6 +13,7 @@ export class TowndetailComponent implements OnInit {
   result: any;
   param: string;
   bShowCoupon: boolean;
+  discount: string;
 
   imagePath: string;
 
@@ -34,6 +35,7 @@ export class TowndetailComponent implements OnInit {
       this.result = res;
       this.results = JSON.stringify(res);
       this.imagePath = res.thumb;
+      this.discount = res.coupon.msg; //"The coupon!10% off order";
       //console.log("############ results = ", this.results);
       });
 
@@ -52,6 +54,7 @@ export class TowndetailComponent implements OnInit {
   closeCoupon(): void {    
     this.param= "";
   }
+
 
   
 

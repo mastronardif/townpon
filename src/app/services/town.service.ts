@@ -30,6 +30,20 @@ export class TownService {
   };
   constructor(private http: Http, private httpClient: HttpClient) { }
 
+  public generateRandomCoupon() {
+    let coupon: string;
+    let discount: number;
+    let max: number;
+    let min: number;
+    max = 50;
+    min = 10;
+    discount =  Math.floor(Math.random() * (max - min + 1)) + min;; //12%;
+
+    coupon = `${discount}% discount.  Expires in 1 hour.`;
+    let rCoupon = {msg: coupon};
+    return rCoupon;
+  }
+
   public getCoupon(searchText: string): Observable<any> {
     console.log("searchGit: ", searchText);    
     searchText= "15300";
@@ -45,14 +59,15 @@ export class TownService {
       return this.http.get(url).map(
         res => {
           let results =  {}; //[];//[{name: "Fred", value: 123123}];
-        const data = res.json();        
+        const data = res.json();
+        let coupon = this.generateRandomCoupon();        
         let items = [];
         if (res){
           //data.items.forEach(element => {
             data.drinks.forEach(element => {
             //let val = element.id;
             let val = element.idDrink.toString().substring(0, 6);            
-            results = {name: element.strDrink, value: val, id: element.idDrink, thumb: element.strDrinkThumb};
+            results = {coupon, name: element.strDrink, value: val, id: element.idDrink, thumb: element.strDrinkThumb};
           });
         }
         return results; //.slice(0, 21); //{lef:111, right: 222};//data;      
