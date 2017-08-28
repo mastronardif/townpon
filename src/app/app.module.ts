@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import { SimpleTimer } from 'ng2-simple-timer';
 
 import { AppComponent } from './app.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -27,7 +28,7 @@ import { TownroutesRoutingModule } from './townroutes/townroutes-routing.module'
     BrowserAnimationsModule,
     TownroutesRoutingModule
   ],
-  providers: [],
+  providers: [SimpleTimer],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
