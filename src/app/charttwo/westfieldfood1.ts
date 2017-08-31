@@ -1,79 +1,79 @@
 export var single = [
   {
-    "name": "Advertise Here 908-858-0954",
+    "name": "Advertise:908-858-0954",
     "value": 909858
   },
   {
     "name": "Ferraro's",
-    "value": 894000
+    "value": 909858
   },
   {
     "name": "Starbucks",
-    "value": 400001
+    "value": 909858
   },
   {
     "name": "Trader Joes",
-    "value": 320003
+    "value": 909858
   },
   {
     "name": "Fujiyama Mama",
-    "value": 500001
+    "value": 909858
   },
   {
     "name": "QDOBA",
-    "value": 720000
+    "value": 909858
   },
   {
     "name": "Theresa's",
-    "value": 500000
+    "value": 909858
   },
   {
     "name": "Cosimo's",
-    "value": 720001
+    "value": 909858
   },
   {
     "name": "Xocolatz",
-    "value": 720001
+    "value": 909858
   },
   {
     "name": "NY Korean BBQ",
-    "value": 720001
+    "value": 909858
   },
   {
     "name": "Nagoya Japanese",
-    "value": 720001
+    "value": 909858
   },
   {
     "name": "Inspiration Roll",
-    "value": 720001
+    "value": 909858
   },
   {
     "name": "Westfield Diner",
-    "value": 720001
+    "value": 909858
   },
   {
     "name": "Addams Tavern",
-    "value": 720001
+    "value": 909858
   },
   {
     "name": "Limani Seafood Gril",
-    "value": 720001
+    "value": 909858
   },
   {
     "name": "Manhattan Bagel",
-    "value": 720001
+    "value": 909858
   },
   {
     "name": "Roosterspin",
-    "value": 720001
+    "value": 909858
   },
   {
     "name": "Old Havana",
-    "value": 720001
+    "value": 909858
   },
   {
     "name": "Splash of Thai",
-    "value": 720001
+    "value": 909858
   },
   {
     "name": "Jade Garden Chinese",
@@ -81,43 +81,43 @@ export var single = [
   },
   {
     "name": "La Casa Italian",
-    "value": 720001
+    "value": 909858
   },
   {
     "name": "La Famiglia Sorrento",
-    "value": 720001
+    "value": 909858
   },
   {
     "name": "Publick House",
-    "value": 720001
+    "value": 909858
   },
   {
     "name": "Turning Point",
-    "value": 720001
+    "value": 909858
   },
   {
     "name": "Fuji Japanese & Asian Cuisine",
-    "value": 720001
+    "value": 909858
   },
   {
     "name": "Echo Tap & Grille",
-    "value": 720001
+    "value": 909858
   },
   {
     "name": "Five Guys",
-    "value": 720001
+    "value": 909858
   },
   {
     "name": "SUBWAY",
-    "value": 720001
+    "value": 909858
   },
   {
     "name": "Buona Pizza",
-    "value": 720001
+    "value": 909858
   },
   {
     "name": "Cold Stone Creamery",
-    "value": 720001
+    "value": 909858
   },
   {
     "name": "Hunan Wok III",
@@ -125,11 +125,11 @@ export var single = [
   },
   {
     "name": "Brick Oven",
-    "value": 720001
+    "value": 909858
   },
   {
     "name": "Chipotle",
-    "value": 200010
+    "value": 909858
   }
 
 

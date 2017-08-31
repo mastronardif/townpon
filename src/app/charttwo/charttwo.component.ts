@@ -21,6 +21,9 @@ export class CharttwoComponent implements OnInit {
   count: number = 123;
   single: any[]; 
   single2: any[]; 
+  towns: any[];
+  resturaunts: any[];
+
   //invertColor: any[];
 
   //invertColor.invertColor.col
@@ -61,8 +64,33 @@ export class CharttwoComponent implements OnInit {
   }
 
   private timer;
+
+  setResturaunts(town: string, dest: any[]) {
+      console.log(`setResturaunts(${town})`);
+      this.townService.searchTown(town).subscribe(      
+      res => { console.log("Resturaunts= ", res);        
+               //this.single = res; 
+               this.resturaunts = res;
+       },
+       err => {
+        alert("FM err = " + err);
+        console.log(err);
+      });
+  }
+
   ngOnInit() {
-    let delta = 5000;
+    this.townService.searchTown('Rutgers').subscribe(      
+      res => { console.log(res);        
+               this.single = res;                
+               this.towns = res;
+               this.towns = this.towns.map(item => item.name);
+       },
+       err => {
+        alert("FM err = " + err);
+        console.log(err);
+      });
+
+    let delta = 6000;
     this.timer = setInterval(() => 
       {
         this.onSelect(null);        
@@ -78,8 +106,16 @@ export class CharttwoComponent implements OnInit {
 
   }
 
+  addToTowns(town) {
+    console.log(`addToTowns(${town})`);
+  }
+
   onSelect(event) {
+
     //console.log(event, this.count);
+    // if a town add to town list.
+    // addToTowns(event.name);
+
     //console.log("debug ", this.single[0].name);
     //alert(JSON.stringify(event));
 
@@ -89,6 +125,11 @@ export class CharttwoComponent implements OnInit {
     //console.log(event, this.count);
 
     if (event != null) {
+
+      if (this.towns.findIndex(item =>(item == event.name)) != -1 ) {
+        this.setResturaunts(event.name, this.single);
+      }      
+
       this.getCoupon(event);
       return;
       //this.townService.getCoupon(event);
@@ -125,6 +166,12 @@ export class CharttwoComponent implements OnInit {
             this.setColors('vivid');
 
             this.single = this.single2;  
+            //this.single = this.resturaunts;
+            //console.log("1 this.single= ", this.single);
+            //this.single = Object.assign([], this.resturaunts);
+            //this.single = this.resturaunts;
+            console.log("2 this.single= ", this.single);
+
             let name = `${this.single[0].name} ZZ`;    
             this.single[0].value =  this.single[0].value+wasCount;      
             //this.single[0] = {name: "pray(2)", value:   this.single[0].value};            
@@ -150,7 +197,7 @@ export class CharttwoComponent implements OnInit {
     let link = ['/detail', id];
     //this.router.navigate(link);
     this.router.navigate(link, { replaceUrl: false, skipLocationChange: true });
-    //this.router.navigate(['/detail'], { queryParams: { id: '1FUCKYOU' }  }); 
+    //this.router.navigate(['/detail'], { queryParams: { id: '1YOU' }  }); 
   }
 
   setColors(name): void {

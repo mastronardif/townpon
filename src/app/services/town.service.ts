@@ -4,7 +4,7 @@ import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
-
+import { environment } from '../../environments/environment';
 class Book {
 
   login:string;
@@ -46,7 +46,8 @@ export class TownService {
 
   public getCoupon(searchText: string): Observable<any> {
     console.log("searchGit: ", searchText);    
-    searchText= "15300";
+    //searchText= "15300";
+
     //const url = 'http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + searchText;
     const url = "http://www.thecocktaildb.com/api/json/v1/1/random.php";
       //const url = "http://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink";     
@@ -75,7 +76,29 @@ export class TownService {
       
     }
 
- 
+  public searchTown(searchText: string): Observable<any> {
+    console.log("searchTown: ", searchText);
+
+    const path = environment.apiEndpoint + `/mylist`;
+    const url = `${path}/${searchText}`;
+    
+    return this.http.get(url).map(
+      res => {
+        let results =  [];
+        const data = res.json();        
+        let items = [];
+        if (res){
+          data.forEach(element => {
+            let val = element.value.toString().substring(0, 6);            
+            results.push({name: element.name, value: val});
+          });
+      }
+
+      return results.slice(0, 21);
+      });
+
+  }
+
   public searchGitPromise(searchText: string): Promise<any> {
         // cheesy crap for the rest local api debacle.
         //let max = Math.max.apply(Math, HEROES.map(function(o){return o.id;}))

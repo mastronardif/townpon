@@ -4,5 +4,9 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  //apiEndpoint: 'http://192.168.1.9:3000/town'
+  apiEndpoint: 'http://localhost:3000/town'
+  //apiEndpoint: 'http://johndog.herokuapp.com/town'
+  
 };

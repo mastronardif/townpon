@@ -17,8 +17,8 @@ export class TowndetailComponent implements OnInit {
   discount: string;
 
   timerCounter0 = 0;
-  timerStopAt = 400; 
-  timerTickSize = .01;
+  timerStopAt = 200; 
+  timerTickSize = .001;
   timer0Id: string;
   timer0button = 'Subscribe';
 
