@@ -14,3 +14,7 @@ body{
     text-rendering: optimizeLegibility;
     margin:20px
   }
+  @import '~https://fonts.googleapis.com/icon?family=Material+Icons';
+  @import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
+  
+  

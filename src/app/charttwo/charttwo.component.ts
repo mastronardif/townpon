@@ -70,7 +70,7 @@ export class CharttwoComponent implements OnInit {
 
   ngOnInit() {
     this.townService.searchTown('the towns').subscribe(      
-      res => { console.log(res);        
+      res => { //console.log(res);        
                this.single = res;                
                this.towns = res;
                this.towns = this.towns.map(item => item.name);
@@ -130,7 +130,7 @@ export class CharttwoComponent implements OnInit {
             this.setColors('vivid');
 
             this.single = this.single2;  
-            console.log("2 this.single= ", this.single);
+            //console.log("2 this.single= ", this.single);
 
             let name = `${this.single[0].name} ZZ`;    
             this.single[0].value =  this.single[0].value+wasCount;      

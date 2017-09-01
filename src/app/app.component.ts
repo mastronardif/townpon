@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
+
+  adminTown(event) {
+    var elementId = event.currentTarget.id;
+    alert(`Admin(${elementId}) Town coming to a theater near you.`);
+  }
 }
