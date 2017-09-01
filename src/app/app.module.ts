@@ -5,6 +5,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+//import { MaterialModule } from '@angular/material';
+import { MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule } from '@angular/material';
 import { SimpleTimer } from 'ng2-simple-timer';
 
 import { AppComponent } from './app.component';
@@ -21,11 +23,13 @@ import { TownroutesRoutingModule } from './townroutes/townroutes-routing.module'
   ],
   imports: [
     BrowserModule, RouterModule,
+    //MaterialModule,
     FormsModule,
     HttpModule,
     HttpClientModule,
     NgxChartsModule,
     BrowserAnimationsModule,
+    MdCardModule,
     TownroutesRoutingModule
   ],
   providers: [SimpleTimer],
