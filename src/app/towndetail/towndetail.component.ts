@@ -32,6 +32,14 @@ export class TowndetailComponent implements OnInit {
 
   ngOnInit() {
     console.log("\t **** towndetail.component.ts:ngOnInit");
+
+    // this.route.params.subscribe(params => {
+    //   // each time the search data is change you'll get this running
+    //   //Do what ever you need to refresh your search page
+    //   console.log('*** New route params for towndetail.component ', this.route);
+    // });
+
+
     //this.bShowCoupon= false;
 		this.st.newTimer('1sec', this.timerTickSize);
     //this.subscribeTimer0();
@@ -39,9 +47,8 @@ export class TowndetailComponent implements OnInit {
     //FM research this.  It looks like it calls the route at init time.
     // Alex ?
     this.route.paramMap    
-      .switchMap((params: ParamMap) => 
-      (this.param = params.get('id'),  
-      console.log(`this.param = ${this.param}`),
+      .switchMap((params: ParamMap) => ( this.param = params.get('id'),  
+        console.log(`this.param = ${this.param}`),
         this.townService.getCoupon(String(+params.get('id'))) )
       )
       .subscribe(res => {  
@@ -55,9 +62,6 @@ export class TowndetailComponent implements OnInit {
           this.startTimer0();
         }
       });
-
-    // this.heroService.getHero(+params.get('id')))
-    // .subscribe(hero => this.hero = hero);
   }
 
   delAllTimer() {
@@ -75,46 +79,38 @@ export class TowndetailComponent implements OnInit {
     this.param= "";
     this.timerCounter0 = 0;      
     this.unsubscribeTimer();
-    //this.subscribeTimer0();
-    //this.bShowCoupon;
-    //this.st.unsubscribe(this.timer0Id);
-    //this.timer0Id = undefined;
   }
 
   unsubscribeTimer() {
 	  if (this.timer0Id) {
-			// Unsubscribe if timer Id is defined
 			this.st.unsubscribe(this.timer0Id);
 			this.timer0Id = undefined;
-			//this.timer0button = 'Subscribe';
 			console.log('timer 0 Unsubscribed.');
     }
   }
 
   subscribeTimer() {
 	  if (!this.timer0Id) {
- 		  // Subscribe if timer Id is undefined
 			this.timer0Id = this.st.subscribe('1sec', () => this.timer0callback());
-			//this.timer0button = 'Unsubscribe XXXX';
 			console.log('timer 0 Subscribed.');
     }
   }
     
-  REMOVEME__subscribeTimer0() {
-		if (this.timer0Id) {
-			// Unsubscribe if timer Id is defined
-			this.st.unsubscribe(this.timer0Id);
-			this.timer0Id = undefined;
-			//this.timer0button = 'Subscribe';
-			console.log('timer 0 Unsubscribed.');
-		} else {
-			// Subscribe if timer Id is undefined
-			this.timer0Id = this.st.subscribe('1sec', () => this.timer0callback());
-			//this.timer0button = 'Unsubscribe XXXX';
-			console.log('timer 0 Subscribed.');
-		}
-		console.log(this.st.getSubscription());
-  }
+  // REMOVEME__subscribeTimer0() {
+	// 	if (this.timer0Id) {
+	// 		// Unsubscribe if timer Id is defined
+	// 		this.st.unsubscribe(this.timer0Id);
+	// 		this.timer0Id = undefined;
+	// 		//this.timer0button = 'Subscribe';
+	// 		console.log('timer 0 Unsubscribed.');
+	// 	} else {
+	// 		// Subscribe if timer Id is undefined
+	// 		this.timer0Id = this.st.subscribe('1sec', () => this.timer0callback());
+	// 		//this.timer0button = 'Unsubscribe XXXX';
+	// 		console.log('timer 0 Subscribed.');
+	// 	}
+	// 	console.log(this.st.getSubscription());
+  // }
 
   timer0callback(): void {
     this.timerCounter0++;

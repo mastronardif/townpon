@@ -46,11 +46,12 @@ export class TownService {
   }
 
   public getCoupon(searchText: string): Observable<any> {
-    console.log("searchGit: ", searchText);
+    console.log("twon.service:getCoupon: ", searchText);
     //searchText= "15300";
 
     //const url = 'http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + searchText;
-    const url = "http://www.thecocktaildb.com/api/json/v1/1/random.php";
+    //const url = "http://www.thecocktaildb.com/api/json/v1/1/random.php";
+    const url = environment.apiEndpointCocktailRandom;
     //const url = "http://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink";     
     //  const url = 'http://api.github.com/search/users?q=' + searchText;
     //const url = 'http://localhost:3000/pingcors?ass=wipe'; //http://localhost:4200/detail/11'; //'api/heroes';
@@ -147,10 +148,10 @@ export class TownService {
   public searchGit(searchText: string): Observable<any> {
     //const searchText = 'js';
     console.log("searchGit: ", searchText);
+    const url =environment.apiEndpointCocktailDrinks;
 
-    //const url = 'http://api.github.com/search/users?q=' + searchText;
-    const url = "http://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink";
-
+    //const url = 'http://api.github.com/search/users?q=' + searchText;    
+    //const url = "http://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink";
     //  const url = 'http://api.github.com/search/users?q=' + searchText;
     //const url = 'http://localhost:3000/pingcors?ass=wipe'; //http://localhost:4200/detail/11'; //'api/heroes';
     //const  url = 'http://date.jsontest.com/?service=ip'; //http://echo.jsontest.com/key/value/one/two';

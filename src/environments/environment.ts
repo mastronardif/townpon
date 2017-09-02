@@ -6,7 +6,8 @@
 export const environment = {
   production: false,
   //apiEndpoint: 'http://192.168.1.9:3000/town'
-  //apiEndpoint: 'http://localhost:3000/town'
-  apiEndpoint: 'http://johndog.herokuapp.com/town'
-  
+  apiEndpoint: 'http://localhost:3000/town',
+  //apiEndpoint: 'https://johndog.herokuapp.com/town',
+  apiEndpointCocktailRandom: 'http://www.thecocktaildb.com/api/json/v1/1/random.php',
+  apiEndpointCocktailDrinks: "http://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink"
 };

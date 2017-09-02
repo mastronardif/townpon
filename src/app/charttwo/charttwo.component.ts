@@ -3,7 +3,7 @@ import { single } from  './westfieldfood1'; //'./data';
 import { single2 } from './westfieldfood';
 import { TownService } from '../services/town.service';
 import { ColorHelper } from '../../common/color.helper';
-import { Router }            from '@angular/router';
+import { Router }      from '@angular/router';
 import { ActivatedRoute, ParamMap} from '@angular/router';
 
 @Component({
@@ -68,7 +68,7 @@ export class CharttwoComponent implements OnInit {
       });
   }
 
-  ngOnInit() {
+  ngOnInit() {   
     this.townService.searchTown('the towns').subscribe(      
       res => { //console.log(res);        
                this.single = res;                
@@ -96,9 +96,9 @@ export class CharttwoComponent implements OnInit {
 
   }
 
-  addToTowns(town) {
-    console.log(`addToTowns(${town})`);
-  }
+  // addToTowns(town) {
+  //   console.log(`addToTowns(${town})`);
+  // }
 
   onSelect(event) {
     Object.assign(this, {single});
