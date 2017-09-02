@@ -9,3 +9,10 @@
   .example-fill-remaining-space {
     flex: 1 1 auto;
   }
+
+button {
+  min-height: 23px !important;
+  min-width: 46px !important;
+  font-size: 10px !important;
+  line-height: 0px; 
+}
