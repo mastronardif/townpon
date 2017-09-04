@@ -1,16 +1,22 @@
 import { Component, OnInit, Directive, ElementRef } from '@angular/core';
+import { ViewChild } from '@angular/core';
 import { single } from  './westfieldfood1'; //'./data';
 import { single2 } from './westfieldfood';
 import { TownService } from '../services/town.service';
 import { ColorHelper } from '../../common/color.helper';
 import { Router }      from '@angular/router';
 import { ActivatedRoute, ParamMap} from '@angular/router';
+import { MdSnackBar } from '@angular/material';
+
+import { TowndetailComponent }  from '../towndetail/towndetail.component';
+import { StoredetailComponent } from '../storedetail/storedetail.component';
+import { BigdummyComponent }    from '../bigdummy/bigdummy.component';
 
 @Component({
   selector: 'app-charttwo',
   templateUrl: './charttwo.component.html',
   styleUrls: ['./charttwo.component.css'],
-  providers: [TownService]
+  providers: [TownService, TowndetailComponent, StoredetailComponent, BigdummyComponent]
 })
 
 @Directive({ selector: '[view]' })
@@ -23,7 +29,7 @@ export class CharttwoComponent implements OnInit {
   resturaunts: any[];
 
   //invertColor: any[];
-
+  
   //invertColor.invertColor.col
   colors: any;
   // options
@@ -44,6 +50,7 @@ export class CharttwoComponent implements OnInit {
   };
 
   constructor(private townService: TownService,
+    public snackBar: MdSnackBar,
     private route: ActivatedRoute,
     //private location: Location,
     private router: Router, 
@@ -145,7 +152,47 @@ export class CharttwoComponent implements OnInit {
     this.count++;        
   }
 
-  getCoupon(event): void {    
+  openSnackBar(name: string) {
+    //this.snackBar.openFromComponent(PizzaPartyComponent, {
+      this.snackBar.open(`getting your coupon for ${name}`, 'Close', { duration: 1000 });
+      
+      //this.snackBar.openFromComponent(CharttwoComponent, {
+      //duration: 1500,
+      //});
+  }
+
+  openSnackBar2(name: string) {
+    console.log('openSnackBar2');
+    
+    //this.snackBar.openFromComponent(PizzaPartyComponent, {
+      //this.snackBar.open(`getting your coupon for ${name}`, 'Close', { duration: 1000 });
+      //import { TowndetailComponent }  from '../towndetail/towndetail.component';
+
+      this.snackBar.openFromComponent(
+        //CharttwoComponent,
+        //StoredetailComponent,
+        //TowndetailComponent,
+        BigdummyComponent,
+         { duration: 6500, });
+  }
+
+  getCoupon(event): void {
+    const name: string = event.name;  
+    const b908: boolean  = (-1 != name.indexOf('0954')) && 
+              (-1 != name.indexOf('0954')); 
+
+    if (event.name != 'Publick House') {
+      
+    if (b908) {
+      this.openSnackBar2(event.name);
+    }
+    else {
+      this.openSnackBar(event.name);
+    }
+    return;
+  }
+  //if (event.name != 'Public House') {return};
+
     console.log('getCoupon', event);
     this.setColors('night');
     

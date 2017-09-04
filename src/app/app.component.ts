@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
 import { ActivatedRoute, ParamMap} from '@angular/router';
+import { TownService } from './services/town.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [TownService]
 })
 
 export class AppComponent implements OnInit {
@@ -33,6 +35,19 @@ export class AppComponent implements OnInit {
     var elementId = event.currentTarget.id;
     //alert(`Admin(${elementId}) Town coming to a theater near you.`);
     this.getCoupon('Add an establishment. ');
+  }
+  adminAddStoreDetail() {
+    console.log('adminAddStoreDetail');
+    let id = 'tbd_id';
+    let link = ['/store', id];
+    //this.router.navigate(link);
+    this.router.navigate(link, { replaceUrl: false, skipLocationChange: true });
+    
+    //this.router.navigate(['/store', 'tbd']);
+
+    // gotoDetail(): void {
+    //   this.router.navigate(['/detail', this.selectedHero.id]);
+    // }
   }
 
   getCoupon(id:string): void {    

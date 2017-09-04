@@ -7,7 +7,8 @@ import { TownService } from '../services/town.service'
 @Component({
   selector: 'app-towndetail',
   templateUrl: './towndetail.component.html',
-  styleUrls: ['./towndetail.component.css']
+  styleUrls: ['./towndetail.component.css'],
+  providers: [TownService]
 })
 export class TowndetailComponent implements OnInit {
   results: any;

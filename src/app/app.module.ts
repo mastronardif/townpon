@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '@angular/material';
-import { MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule } from '@angular/material';
+import { MdSnackBar, MdSnackBarModule, MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule } from '@angular/material';
 import { SimpleTimer } from 'ng2-simple-timer';
 
 import { AppComponent } from './app.component';
@@ -14,13 +14,18 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { CharttwoComponent }   from './charttwo/charttwo.component';
 import { TowndetailComponent } from './towndetail/towndetail.component';
 import { TownroutesRoutingModule } from './townroutes/townroutes-routing.module';
+import { StoredetailComponent } from './storedetail/storedetail.component';
+import { BigdummyComponent } from './bigdummy/bigdummy.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CharttwoComponent,
-    TowndetailComponent
+    TowndetailComponent,
+    StoredetailComponent,
+    BigdummyComponent
   ],
+  entryComponents: [BigdummyComponent],
   imports: [
     BrowserModule, RouterModule,
     MaterialModule,
@@ -31,6 +36,7 @@ import { TownroutesRoutingModule } from './townroutes/townroutes-routing.module'
     BrowserAnimationsModule,
     MdToolbarModule,
     MdCardModule,
+    MdSnackBarModule,    
     TownroutesRoutingModule
   ],
   providers: [SimpleTimer],
