@@ -5,7 +5,12 @@
 
 <md-toolbar style="font-size: 40%" color="primary">
     <span>v0.12</span>       
-    <md-icon class="example-icon">favorite</md-icon>
+
+    <md-icon class="example-icon" (click)="adminAddStoreDetail()">favorite</md-icon>
+    <a routerLink="/">
+        <md-icon class="example-icon">home</md-icon> 
+    </a>
+
     <button md-button id="admin" name="admin" md-raised-button (click)="adminTown($event)">Admin</button>
     <span class="example-spacer"></span>
     <button md-raised-button color="accent" (click)="adminAddStoreDetail()">Add a Store</button>

@@ -13,8 +13,9 @@ const appRoutes: Routes = [
 
   { path: 'detail', component: TowndetailComponent },
   { path: 'detail/:id', component: TowndetailComponent },
-  { path: 'store/:id', component: StoredetailComponent }
-  //,{ path: '**', component: CharttwoComponent }
+  { path: 'store/:id', component: StoredetailComponent },
+  //{ path: '**', component: CharttwoComponent }
+  { path: '**', redirectTo: '/charttwo', pathMatch: 'full' },
 ];
 
 @NgModule({

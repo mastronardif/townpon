@@ -16,6 +16,9 @@
                   <input type="text" formControlName="secret">
               </label>
             -->
+            <a routerLink="/">
+              <md-icon class="example-icon">home</md-icon> 
+          </a>
               <button (click)="goHome()">Home</button>
               <button (click)="save()">Save</button>
             </p>
@@ -25,16 +28,34 @@
           </label>
           <div class="alert" *ngIf="!rForm.controls['name'].valid && rForm.controls['name'].touched">{{ titleAlert }}</div>
   
-  
+  <br/>
           <label>Description
-            <textarea formControlName="description"></textarea>
+              <textarea formControlName="description"></textarea>
           </label>
-          <div class="alert" *ngIf="!rForm.controls['description'].valid && rForm.controls['description'].touched">You must specify a description that's between 30 and 500 characters.</div>
-  
-  
+          <div class="alert" *ngIf="!rForm.controls['description'].valid 
+            && rForm.controls['description'].touched">
+            You must specify a description that's between 30 and 500 characters.
+          </div>
+
           <label for="validate">Minimum of 3 Characters</label>
           <input type="checkbox" name="validate" formControlName="validate" value="1"> On
-  
+
+          <br/>
+          <label>Store Code
+              <input type="text" formControlName="storecode">
+            </label>
+            <div class="alert" *ngIf="!rForm.controls['storecode'].valid 
+               && rForm.controls['storecode'].touched">{{ titleAlert }}
+            </div>
+  <br/>
+  <label>Coupon
+      <textarea formControlName="coupon"></textarea>
+  </label>
+  <div class="alert" *ngIf="!rForm.controls['coupon'].valid 
+    && rForm.controls['coupon'].touched">
+    You must specify a description that's between 30 and 500 characters.
+  </div>
+  <br/>
           <input type="submit" class="button expanded" value="Submit Form" [disabled]="!rForm.valid">
         </div>
       </div>
