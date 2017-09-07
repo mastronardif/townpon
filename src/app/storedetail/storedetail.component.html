@@ -5,7 +5,6 @@
     <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
       <div class="form-container">
         <div class="row columns">
-  
           <h1>Store Details </h1>
           <p>
               This is where you add a store and its 
@@ -19,8 +18,8 @@
             <a routerLink="/">
               <md-icon class="example-icon">home</md-icon> 
           </a>
-              <button (click)="goHome()">Home</button>
-              <button (click)="save()">Save</button>
+              <button (click)="goHome()">Home <i class="material-icons">home</i></button>
+              <button (click)="save()">Save  <i class="material-icons">save</i></button>
             </p>
   
           <label>Name
@@ -28,7 +27,6 @@
           </label>
           <div class="alert" *ngIf="!rForm.controls['name'].valid && rForm.controls['name'].touched">{{ titleAlert }}</div>
   
-  <br/>
           <label>Description
               <textarea formControlName="description"></textarea>
           </label>
@@ -40,7 +38,6 @@
           <label for="validate">Minimum of 3 Characters</label>
           <input type="checkbox" name="validate" formControlName="validate" value="1"> On
 
-          <br/>
           <label>Store Code
               <input type="text" formControlName="storecode">
             </label>
@@ -55,10 +52,10 @@
     && rForm.controls['coupon'].touched">
     You must specify a description that's between 30 and 500 characters.
   </div>
-  <br/>
           <input type="submit" class="button expanded" value="Submit Form" [disabled]="!rForm.valid">
         </div>
       </div>
+      
     </form>
   </div>
   
