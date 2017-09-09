@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
 import { ActivatedRoute, ParamMap} from '@angular/router';
 import { TownService } from './services/town.service';
+import { DataService } from './services/data.service'
 
 @Component({
   selector: 'app-root',
@@ -12,13 +13,18 @@ import { TownService } from './services/town.service';
 
 export class AppComponent implements OnInit {
 
-  constructor( private router: Router ) {
+  public town:string = "tbd";
+
+  constructor(private data: DataService, private router: Router ) {
     console.log(`app.components.ts, constructor, ${router}`);
   }
+
   ngOnInit() {
     console.log('app.component:ngOnInit');
     console.log('this.router[0]', this.router);
 
+    this.data.currentMessage.subscribe(message => {console.log("SUB LOAD TOWN: "+message);
+                                        this.town = message});
     // this.router.routeReuseStrategy.shouldReuseRoute = function() {
     //   return false;
     // };
@@ -31,11 +37,17 @@ export class AppComponent implements OnInit {
     // );
   }
 
+  // recieveMessage($event) {
+  //   console.log('recieveMessage(${event})');
+  //   this.town = $event;
+  // }
+
   adminTown(event) {
     var elementId = event.currentTarget.id;
     //alert(`Admin(${elementId}) Town coming to a theater near you.`);
     this.getCoupon('Add an establishment. ');
   }
+
   adminAddStoreDetail() {
     console.log('adminAddStoreDetail');
     let id = 'tbd_id';

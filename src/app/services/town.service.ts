@@ -91,8 +91,9 @@ export class TownService {
         let items = [];
         if (res) {
           data.forEach(element => {
-            let val = element.value.toString().substring(0, 6);
-            results.push({ name: element.name, value: val });
+            let val = element.value.toString().substring(0, 6);            
+            //results.push({ name: element.name, value: val });
+            results.push({ name: element.name, value: element.value });
           });
         }
 
@@ -147,7 +148,7 @@ export class TownService {
 
   public searchGit(searchText: string): Observable<any> {
     //const searchText = 'js';
-    console.log("searchGit: ", searchText);
+    //console.log("searchGit: ", searchText);
     const url =environment.apiEndpointCocktailDrinks;
 
     //const url = 'http://api.github.com/search/users?q=' + searchText;    

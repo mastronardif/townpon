@@ -1,7 +1,11 @@
 import { Component, OnInit, Directive, ElementRef } from '@angular/core';
 import { ViewChild } from '@angular/core';
-import { single } from  './westfieldfood1'; //'./data';
+import { single } from  './westfieldfood1';
 import { single2 } from './westfieldfood';
+import { defaultfood } from  './defaultfood'; 
+import { cranfordfood } from  './cranfordfood'; 
+import { metuchenfood } from  './metuchenfood'; 
+
 import { TownService } from '../services/town.service';
 import { ColorHelper } from '../../common/color.helper';
 import { Router }      from '@angular/router';
@@ -11,6 +15,8 @@ import { MdSnackBar } from '@angular/material';
 import { TowndetailComponent }  from '../towndetail/towndetail.component';
 import { StoredetailComponent } from '../storedetail/storedetail.component';
 import { BigdummyComponent }    from '../bigdummy/bigdummy.component';
+import { DataService } from "../services/data.service";
+
 
 @Component({
   selector: 'app-charttwo',
@@ -25,9 +31,13 @@ export class CharttwoComponent implements OnInit {
   count: number = 123;
   single: any[]; 
   single2: any[]; 
+  defaultfood: any[];
+  cranfordfood: any[];
+  metuchenfood: any[];
+
   towns: any[];
   resturaunts: any[];
-
+  town:string = 'bbb';
   //invertColor: any[];
   
   //invertColor.invertColor.col
@@ -49,25 +59,64 @@ export class CharttwoComponent implements OnInit {
     ]
   };
 
-  constructor(private townService: TownService,
+  constructor(private data: DataService, private townService: TownService,
     public snackBar: MdSnackBar,
     private route: ActivatedRoute,
-    //private location: Location,
     private router: Router, 
     el: ElementRef) {     
 
     Object.assign(this, {single});
     Object.assign(this, {single2});
+    Object.assign(this, {defaultfood});
+    Object.assign(this, {cranfordfood});
+    Object.assign(this, {metuchenfood});
   }
 
   private timer;
 
+  tellEveryoneAboutTown(town: string) {
+    console.log(`tellEveryoneAboutTown(${town})`);
+    this.data.changeMessage(town);
+  }
+
+
+  TEST_sw_signal(town:string) {
+    console.log('TEST_sw_signal');
+    switch(town) {
+      case 'Cranford': {
+        this.single2= this.cranfordfood;
+        this.town = town;
+        break;
+      }
+      case 'Metuchen': {
+        this.single2= this.metuchenfood;
+        this.town = town;
+        break;
+      }
+      default: {
+        this.single2= this.defaultfood;
+        this.town = 'Default';
+        break;
+      }      
+    }
+    this.tellEveryoneAboutTown(this.town);
+  }
+  
   setResturaunts(town: string, dest: any[]) {
+      // set town
+      // this.town = town;
+      //this.TEST_sw_signal(town);
+      //this.tellEveryoneAboutTown(town);
+
       console.log(`setResturaunts(${town})`);
       this.townService.searchTown(town).subscribe(      
       res => { console.log("Resturaunts= ", res);        
                //this.single = res; 
                this.resturaunts = res;
+              
+               this.single2=res;
+               this.town = town;
+               console.log("resturaunts = ", this.single2)
        },
        err => {
         alert("FM err = " + err);
@@ -75,7 +124,14 @@ export class CharttwoComponent implements OnInit {
       });
   }
 
+  ngOnDestroy() { 
+    console.log('ngOnDestroy()');
+    clearInterval(this.timer);
+  }
   ngOnInit() {   
+    //this.data.currentMessage.subscribe(message => this.town = message+'FUCK');
+    console.log('ngOnInit()');
+
     this.townService.searchTown('the towns').subscribe(      
       res => { //console.log(res);        
                this.single = res;                
@@ -114,8 +170,10 @@ export class CharttwoComponent implements OnInit {
     //console.log(event, this.count);
 
     if (event != null) {
-
+      let town:string = event.name;
       if (this.towns.findIndex(item =>(item == event.name)) != -1 ) {
+        console.log(`SET single for ${town}`);
+        //this.town=town;
         this.setResturaunts(event.name, this.single);
       }      
 
@@ -128,8 +186,11 @@ export class CharttwoComponent implements OnInit {
       this.single[0].value =  this.single[0].value+1;
       let name=this.single[1].name;         
       this.setColors('fire');
+      //this.town='Westfield(default)';
+      this.tellEveryoneAboutTown('Westfield(default)');
     }
     else {
+      this.tellEveryoneAboutTown(this.town);
       let wasCount = this.count;
       this.townService.searchGit('mastronardi').subscribe(      
           res => {            
@@ -139,7 +200,7 @@ export class CharttwoComponent implements OnInit {
             this.single = this.single2;  
             //console.log("2 this.single= ", this.single);
 
-            let name = `${this.single[0].name} ZZ`;    
+            //let name = `${this.single[0].name} ZZ`;    
             this.single[0].value =  this.single[0].value+wasCount;      
           },           
          err => {
@@ -173,7 +234,7 @@ export class CharttwoComponent implements OnInit {
         //StoredetailComponent,
         //TowndetailComponent,
         BigdummyComponent,
-         { duration: 6500, });
+         { duration: 1000, });
   }
 
   getCoupon(event): void {

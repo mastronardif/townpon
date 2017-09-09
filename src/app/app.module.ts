@@ -16,6 +16,7 @@ import { TowndetailComponent } from './towndetail/towndetail.component';
 import { TownroutesRoutingModule } from './townroutes/townroutes-routing.module';
 import { StoredetailComponent } from './storedetail/storedetail.component';
 import { BigdummyComponent } from './bigdummy/bigdummy.component';
+import { DataService } from './services/data.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { BigdummyComponent } from './bigdummy/bigdummy.component';
     CharttwoComponent,
     TowndetailComponent,
     StoredetailComponent,
-    BigdummyComponent
+    BigdummyComponent    
   ],
   entryComponents: [BigdummyComponent],
   imports: [
@@ -39,7 +40,7 @@ import { BigdummyComponent } from './bigdummy/bigdummy.component';
     MdSnackBarModule,    
     TownroutesRoutingModule
   ],
-  providers: [SimpleTimer],
+  providers: [SimpleTimer, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
