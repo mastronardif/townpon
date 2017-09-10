@@ -2,12 +2,10 @@ import { Component, OnInit, Directive, ElementRef } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { single } from  './westfieldfood1';
 import { single2 } from './westfieldfood';
-import { defaultfood } from  './defaultfood'; 
-import { cranfordfood } from  './cranfordfood'; 
-import { metuchenfood } from  './metuchenfood'; 
 
 import { TownService } from '../services/town.service';
 import { ColorHelper } from '../../common/color.helper';
+import { colorSets } from '../../utils/color-sets';
 import { Router }      from '@angular/router';
 import { ActivatedRoute, ParamMap} from '@angular/router';
 import { MdSnackBar } from '@angular/material';
@@ -31,9 +29,6 @@ export class CharttwoComponent implements OnInit {
   count: number = 123;
   single: any[]; 
   single2: any[]; 
-  defaultfood: any[];
-  cranfordfood: any[];
-  metuchenfood: any[];
 
   towns: any[];
   resturaunts: any[];
@@ -67,9 +62,6 @@ export class CharttwoComponent implements OnInit {
 
     Object.assign(this, {single});
     Object.assign(this, {single2});
-    Object.assign(this, {defaultfood});
-    Object.assign(this, {cranfordfood});
-    Object.assign(this, {metuchenfood});
   }
 
   private timer;
@@ -80,34 +72,29 @@ export class CharttwoComponent implements OnInit {
   }
 
 
-  TEST_sw_signal(town:string) {
-    console.log('TEST_sw_signal');
-    switch(town) {
-      case 'Cranford': {
-        this.single2= this.cranfordfood;
-        this.town = town;
-        break;
-      }
-      case 'Metuchen': {
-        this.single2= this.metuchenfood;
-        this.town = town;
-        break;
-      }
-      default: {
-        this.single2= this.defaultfood;
-        this.town = 'Default';
-        break;
-      }      
-    }
-    this.tellEveryoneAboutTown(this.town);
-  }
+  // TEST_sw_signal(town:string) {
+  //   console.log('TEST_sw_signal');
+  //   switch(town) {
+  //     case 'Cranford': {
+  //       this.single2= this.cranfordfood;
+  //       this.town = town;
+  //       break;
+  //     }
+  //     case 'Metuchen': {
+  //       this.single2= this.metuchenfood;
+  //       this.town = town;
+  //       break;
+  //     }
+  //     default: {
+  //       this.single2= this.defaultfood;
+  //       this.town = 'Default';
+  //       break;
+  //     }      
+  //   }
+  //   this.tellEveryoneAboutTown(this.town);
+  // }
   
   setResturaunts(town: string, dest: any[]) {
-      // set town
-      // this.town = town;
-      //this.TEST_sw_signal(town);
-      //this.tellEveryoneAboutTown(town);
-
       console.log(`setResturaunts(${town})`);
       this.townService.searchTown(town).subscribe(      
       res => { console.log("Resturaunts= ", res);        
@@ -129,8 +116,13 @@ export class CharttwoComponent implements OnInit {
     clearInterval(this.timer);
   }
   ngOnInit() {   
-    //this.data.currentMessage.subscribe(message => this.town = message+'FUCK');
-    console.log('ngOnInit()');
+    //this.data.currentMessage.subscribe(message => this.town = message+'uuu');
+    console.log('charttwo:ngOnInit()');
+
+    this.route.paramMap
+    .switchMap((params: ParamMap) => this.townService.searchTown(params.get('id')))
+    .subscribe(res => {this.single2 = res; this.setColors('RANDOM');});
+
 
     this.townService.searchTown('the towns').subscribe(      
       res => { //console.log(res);        
@@ -158,10 +150,6 @@ export class CharttwoComponent implements OnInit {
     //console.log('ngOnInit() ngOnInit() ngOnInit()');
 
   }
-
-  // addToTowns(town) {
-  //   console.log(`addToTowns(${town})`);
-  // }
 
   onSelect(event) {
     Object.assign(this, {single});
@@ -243,16 +231,14 @@ export class CharttwoComponent implements OnInit {
               (-1 != name.indexOf('0954')); 
 
     if (event.name != 'Publick House') {
-      
-    if (b908) {
-      this.openSnackBar2(event.name);
+      if (b908) {
+        this.openSnackBar2(event.name);
+      }
+      else {
+        this.openSnackBar(event.name);
+      }
+      return;
     }
-    else {
-      this.openSnackBar(event.name);
-    }
-    return;
-  }
-  //if (event.name != 'Public House') {return};
 
     console.log('getCoupon', event);
     this.setColors('night');
@@ -264,7 +250,20 @@ export class CharttwoComponent implements OnInit {
     //this.router.navigate(['/detail'], { queryParams: { id: '1YOU' }  }); 
   }
 
-  setColors(name): void {
+  getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+  }
+
+  setColors(name:string): void {
+    
+    if (name.toUpperCase() == 'RANDOM') {      
+      let iRand = this.getRandomIntInclusive(0, colorSets.length-1);
+      //console.log(iRand, colorSets[iRand].name);
+      name = colorSets[iRand].name;
+    }
+
     this.colors = new ColorHelper(name, null, null);// (scheme, 'ordinal', [], null);
     this.colorScheme = { domain: this.colors.colorDomain}; //scheme; //this.colors.colorDomain; // // scheme; //this.colors;
   }

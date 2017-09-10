@@ -23,29 +23,21 @@ export class AppComponent implements OnInit {
     console.log('app.component:ngOnInit');
     console.log('this.router[0]', this.router);
 
-    this.data.currentMessage.subscribe(message => {console.log("SUB LOAD TOWN: "+message);
+    this.data.currentMessage.subscribe(message => {console.log("SUBscribed. A new TOWN has been loaded: "+message);
                                         this.town = message});
-    // this.router.routeReuseStrategy.shouldReuseRoute = function() {
-    //   return false;
-    // };
-
-    // ( =>
-    //   {
-    //     console.log(`what the fuck is bob (${bob})`);
-    //     return false;
-    //   }
-    // );
   }
-
-  // recieveMessage($event) {
-  //   console.log('recieveMessage(${event})');
-  //   this.town = $event;
-  // }
 
   adminTown(event) {
     var elementId = event.currentTarget.id;
-    //alert(`Admin(${elementId}) Town coming to a theater near you.`);
     this.getCoupon('Add an establishment. ');
+  }
+
+  adminSelectTown() {
+    let id='b'+Date.now();
+    console.log(':adminAddSelectTown', id);
+ 
+    let link = ['/charttwo', id];
+    this.router.navigate(link, { replaceUrl: false, skipLocationChange: true });
   }
 
   adminAddStoreDetail() {

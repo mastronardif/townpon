@@ -10,6 +10,7 @@ const appRoutes: Routes = [
 
   { path: '', redirectTo: '/charttwo', pathMatch: 'full' },
   { path: 'charttwo', component: CharttwoComponent },
+  { path: 'charttwo/:id', component: CharttwoComponent },
 
   { path: 'detail', component: TowndetailComponent },
   { path: 'detail/:id', component: TowndetailComponent },
