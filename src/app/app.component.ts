@@ -23,8 +23,9 @@ export class AppComponent implements OnInit {
     console.log('app.component:ngOnInit');
     console.log('this.router[0]', this.router);
 
-    this.data.currentMessage.subscribe(message => {console.log("SUBscribed. A new TOWN has been loaded: "+message);
-                                        this.town = message});
+    this.data.currentMessage.subscribe(message => {
+                              //console.log("SUBscribed. A new TOWN has been loaded: "+message);
+                              this.town = message});
   }
 
   adminTown(event) {

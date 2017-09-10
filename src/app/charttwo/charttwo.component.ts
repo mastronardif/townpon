@@ -67,43 +67,20 @@ export class CharttwoComponent implements OnInit {
   private timer;
 
   tellEveryoneAboutTown(town: string) {
-    console.log(`tellEveryoneAboutTown(${town})`);
+    //console.log(`tellEveryoneAboutTown(${town})`);
     this.data.changeMessage(town);
   }
-
-
-  // TEST_sw_signal(town:string) {
-  //   console.log('TEST_sw_signal');
-  //   switch(town) {
-  //     case 'Cranford': {
-  //       this.single2= this.cranfordfood;
-  //       this.town = town;
-  //       break;
-  //     }
-  //     case 'Metuchen': {
-  //       this.single2= this.metuchenfood;
-  //       this.town = town;
-  //       break;
-  //     }
-  //     default: {
-  //       this.single2= this.defaultfood;
-  //       this.town = 'Default';
-  //       break;
-  //     }      
-  //   }
-  //   this.tellEveryoneAboutTown(this.town);
-  // }
-  
+ 
   setResturaunts(town: string, dest: any[]) {
-      console.log(`setResturaunts(${town})`);
+      //console.log(`setResturaunts(${town})`);
       this.townService.searchTown(town).subscribe(      
-      res => { console.log("Resturaunts= ", res);        
+      res => { //console.log("Resturaunts= ", res);        
                //this.single = res; 
                this.resturaunts = res;
               
                this.single2=res;
                this.town = town;
-               console.log("resturaunts = ", this.single2)
+               //console.log("resturaunts = ", this.single2)
        },
        err => {
         alert("FM err = " + err);
@@ -115,6 +92,7 @@ export class CharttwoComponent implements OnInit {
     console.log('ngOnDestroy()');
     clearInterval(this.timer);
   }
+
   ngOnInit() {   
     //this.data.currentMessage.subscribe(message => this.town = message+'uuu');
     console.log('charttwo:ngOnInit()');
@@ -129,6 +107,9 @@ export class CharttwoComponent implements OnInit {
                this.single = res;                
                this.towns = res;
                this.towns = this.towns.map(item => item.name);
+
+               this.town = 'the towns';
+               this.tellEveryoneAboutTown('the towns');
        },
        err => {
         alert("FM err = " + err);
@@ -152,11 +133,8 @@ export class CharttwoComponent implements OnInit {
   }
 
   onSelect(event) {
-    Object.assign(this, {single});
-    //this.single = this.single2;
-    //Object.assign(this, {single2});
-    //console.log(event, this.count);
-
+    //Object.assign(this, {single});
+    
     if (event != null) {
       let town:string = event.name;
       if (this.towns.findIndex(item =>(item == event.name)) != -1 ) {
@@ -171,13 +149,17 @@ export class CharttwoComponent implements OnInit {
     }
     
     if(this.count % 2) {
+
+      Object.assign(this, {single});
+
       this.single[0].value =  this.single[0].value+1;
       let name=this.single[1].name;         
       this.setColors('fire');
       //this.town='Westfield(default)';
-      this.tellEveryoneAboutTown('Westfield(default)');
+      this.tellEveryoneAboutTown('Westfield');
     }
     else {
+      //console.log("\t ***** ***** ", event, this.count);
       this.tellEveryoneAboutTown(this.town);
       let wasCount = this.count;
       this.townService.searchGit('mastronardi').subscribe(      
@@ -211,7 +193,7 @@ export class CharttwoComponent implements OnInit {
   }
 
   openSnackBar2(name: string) {
-    console.log('openSnackBar2');
+    //console.log('openSnackBar2');
     
     //this.snackBar.openFromComponent(PizzaPartyComponent, {
       //this.snackBar.open(`getting your coupon for ${name}`, 'Close', { duration: 1000 });
@@ -240,7 +222,7 @@ export class CharttwoComponent implements OnInit {
       return;
     }
 
-    console.log('getCoupon', event);
+    //console.log('getCoupon', event);
     this.setColors('night');
     
     let id = event.name;
