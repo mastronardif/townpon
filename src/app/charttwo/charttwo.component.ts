@@ -59,7 +59,8 @@ export class CharttwoComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router, 
     el: ElementRef) {     
-
+    console.log('charttwo:constructor');
+    console.log(`\t this.resturaunts= ${this.resturaunts}`);
     Object.assign(this, {single});
     Object.assign(this, {single2});
   }
@@ -80,6 +81,8 @@ export class CharttwoComponent implements OnInit {
               
                this.single2=res;
                this.town = town;
+               this.data.mySession["single2"]=town;
+               
                //console.log("resturaunts = ", this.single2)
        },
        err => {
@@ -90,17 +93,18 @@ export class CharttwoComponent implements OnInit {
 
   ngOnDestroy() { 
     console.log('ngOnDestroy()');
+    console.log(`\t this.resturaunts= ${this.resturaunts}`);
     clearInterval(this.timer);
   }
 
   ngOnInit() {   
     //this.data.currentMessage.subscribe(message => this.town = message+'uuu');
     console.log('charttwo:ngOnInit()');
+    console.log(`***this.data.mySession = ${JSON.stringify(this.data.mySession)}`);    
 
     this.route.paramMap
     .switchMap((params: ParamMap) => this.townService.searchTown(params.get('id')))
     .subscribe(res => {this.single2 = res; this.setColors('RANDOM');});
-
 
     this.townService.searchTown('the towns').subscribe(      
       res => { //console.log(res);        
@@ -109,6 +113,7 @@ export class CharttwoComponent implements OnInit {
                this.towns = this.towns.map(item => item.name);
 
                this.town = 'the towns';
+               this.data.mySession["single"]= this.town;
                this.tellEveryoneAboutTown('the towns');
        },
        err => {
@@ -137,7 +142,7 @@ export class CharttwoComponent implements OnInit {
     
     if (event != null) {
       let town:string = event.name;
-      if (this.towns.findIndex(item =>(item == event.name)) != -1 ) {
+      if (this.towns.findIndex(item =>(item.toUpperCase() == event.name.toUpperCase())) != -1 ) {
         console.log(`SET single for ${town}`);
         //this.town=town;
         this.setResturaunts(event.name, this.single);
