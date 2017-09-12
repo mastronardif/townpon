@@ -11,8 +11,12 @@
 
     <button md-button id="admin" name="admin" md-raised-button (click)="adminTown($event)">
             T</button>
-    <span class="example-spacer"></span>
 
+    <button md-button id="s1" name="s1" md-raised-button (click)="sendMsg($event)">
+                S1</button>      
+    <button md-button id="s1" name="s2" md-raised-button (click)="sendMsg($event)">
+                S2</button>            
+    <span class="example-spacer"></span>
     <md-icon class="material-icon" (click)="adminSelectTown()">search</md-icon>
 
     <button md-raised-button color="accent" (click)="adminAddStoreDetail()">

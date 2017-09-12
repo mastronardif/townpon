@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from "../services/data.service";
 
 @Component({
   selector: 'app-bigdummy',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BigdummyComponent implements OnInit {
 
-  constructor() { }
+  constructor(private data: DataService) { }
 
   ngOnInit() {
+    console.log("bigdummy:ngOnInit() ", this.data.mySession);
+    //console.log("bigdummy:ngOnInit() ", this.data.get('single2'));
   }
 
 }

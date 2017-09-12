@@ -84,6 +84,10 @@ export class CharttwoComponent implements OnInit {
                this.data.mySession["single2"]=town;
                
                //console.log("resturaunts = ", this.single2)
+                       // fm new 9/11
+        //this.single = this.single2;
+        //
+        //Object.assign(this, {single2}); 
        },
        err => {
         alert("FM err = " + err);
@@ -100,7 +104,22 @@ export class CharttwoComponent implements OnInit {
   ngOnInit() {   
     //this.data.currentMessage.subscribe(message => this.town = message+'uuu');
     console.log('charttwo:ngOnInit()');
-    console.log(`***this.data.mySession = ${JSON.stringify(this.data.mySession)}`);    
+    console.log(`***this.data.mySession = ${JSON.stringify(this.data.mySession)}`);
+    
+    // FM begin
+    this.data.currentMessage22.subscribe(message => {
+      console.log("\* currentMessage22: "+message);
+      if (message == 's1') {
+        this.s1();        
+      }
+      if (message == 's2') {
+        this.s2();        
+      }
+
+      //this.onSelect(null);
+      //this.town = message
+    });
+    // FM end
 
     this.route.paramMap
     .switchMap((params: ParamMap) => this.townService.searchTown(params.get('id')))
@@ -121,7 +140,7 @@ export class CharttwoComponent implements OnInit {
         console.log(err);
       });
 
-    let delta = 6000;
+    let delta = 66000;
     this.timer = setInterval(() => 
       {
         this.onSelect(null);        
@@ -137,25 +156,58 @@ export class CharttwoComponent implements OnInit {
 
   }
 
+  s1() {
+    //  if(this.count % 2)
+    console.log(`onSelect count(${this.count})`);
+
+    Object.assign(this, {single});
+
+    this.single[0].value =  this.single[0].value+1;
+    let name=this.single[1].name;         
+    this.setColors('fire');
+    //this.town='Westfield(default)';
+    this.tellEveryoneAboutTown('Westfield');
+
+    //this.count++;
+  }
+
+  s2() {
+    console.log(`onSelect count(${this.count})`);
+    this.tellEveryoneAboutTown(this.town);
+    let wasCount = this.count;
+
+    this.setColors('vivid');
+    this.single = this.single2;  
+    this.single[0].value =  this.single[0].value+wasCount; 
+    //this.count++;
+  }
+
   onSelect(event) {
     //Object.assign(this, {single});
     
     if (event != null) {
+
       let town:string = event.name;
       if (this.towns.findIndex(item =>(item.toUpperCase() == event.name.toUpperCase())) != -1 ) {
         console.log(`SET single for ${town}`);
         //this.town=town;
         this.setResturaunts(event.name, this.single);
+        
+        // fm new 9/11
+        this.single = this.single2;
+        Object.assign(this, {single2}); 
+
+        return;
       }      
 
       this.getCoupon(event);
-      return;
-      //this.townService.getCoupon(event);
+      //return;
     }
     
     if(this.count % 2) {
+      console.log(`onSelect count(${this.count})`);
 
-      Object.assign(this, {single});
+     // Object.assign(this, {single});
 
       this.single[0].value =  this.single[0].value+1;
       let name=this.single[1].name;         
@@ -165,24 +217,32 @@ export class CharttwoComponent implements OnInit {
     }
     else {
       //console.log("\t ***** ***** ", event, this.count);
+      console.log(`onSelect count(${this.count})`);
       this.tellEveryoneAboutTown(this.town);
       let wasCount = this.count;
-      this.townService.searchGit('mastronardi').subscribe(      
-          res => {            
-            //console.log("\t", event, this.count);
-            this.setColors('vivid');
 
-            this.single = this.single2;  
-            //console.log("2 this.single= ", this.single);
+      this.setColors('vivid');
+      this.single = this.single2;  
+      //console.log("2 this.single= ", this.single);
+      //let name = `${this.single[0].name} ZZ`;    
+      this.single[0].value =  this.single[0].value+wasCount; 
 
-            //let name = `${this.single[0].name} ZZ`;    
-            this.single[0].value =  this.single[0].value+wasCount;      
-          },           
-         err => {
-           alert("FM err = " + err);
-           console.log(err);
-         }
-        );    
+      // this.townService.searchGit('mastronardi').subscribe(      
+      //     res => {            
+      //       //console.log("\t", event, this.count);
+      //       this.setColors('vivid');
+
+      //       this.single = this.single2;  
+      //       //console.log("2 this.single= ", this.single);
+
+      //       //let name = `${this.single[0].name} ZZ`;    
+      //       this.single[0].value =  this.single[0].value+wasCount;      
+      //     },           
+      //    err => {
+      //      alert("FM err = " + err);
+      //      console.log(err);
+      //    }
+      //   );    
     }
 
     this.count++;        

@@ -28,6 +28,11 @@ export class AppComponent implements OnInit {
                               this.town = message});
   }
 
+  sendMsg(event) {
+    // Send msg to ___.
+    this.data.changeMessage22(event.currentTarget.name);
+  }
+
   adminTown(event) {
     var elementId = event.currentTarget.id;
     this.getCoupon('Add an establishment. ');
