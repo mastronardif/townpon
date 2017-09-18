@@ -1,3 +1,4 @@
+
 <p>
   bigdummy works!
   <i class="material-icons">attach_money</i>
@@ -8,3 +9,14 @@
   <img src="https://i.pinimg.com/736x/69/c8/9a/69c89a7e9bae6bdfa31a0e38f13cb63d--sanford-and-son-lol-funny.jpg"
   alt="Smiley face" height="42" width="42">
 </p>
+
+<div class="bigdummy">
+<ngx-charts-advanced-pie-chart
+[view]="view"
+[scheme]="colorScheme"
+[results]="single"
+[gradient]="gradient"
+(select)="onSelect($event)">
+</ngx-charts-advanced-pie-chart>
+
+</div>

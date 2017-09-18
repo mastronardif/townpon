@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 //import { Location } from '@angular/common';
 import { Router }      from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {single} from './data';
 
 @Component({
   selector: 'app-storedetail',
@@ -9,6 +10,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./storedetail.component.css']
 })
 export class StoredetailComponent implements OnInit {
+  view: any[] = [700, 400];
+  data: any[];
   rForm: FormGroup;
   post:any;                     // A property for our submitted form
   description: string = '';
@@ -19,6 +22,7 @@ export class StoredetailComponent implements OnInit {
   titleAlert:string = 'This field is required';
 
   constructor(private router: Router, private fb: FormBuilder) { 
+    this.data = single;
     this.rForm = fb.group({
       'storecode' : [null, Validators.required],
       'coupon' : [null, Validators.required],
@@ -43,6 +47,14 @@ export class StoredetailComponent implements OnInit {
         this.rForm.get('name').updateValueAndValidity();
       }
     )
+  }
+
+  colorScheme = {
+    domain: ['#5AA454', '#A10A28', '#C7B42C']
+  };
+  
+  onSelect(event) {
+    console.log(event);
   }
 
   addPost(post) {
