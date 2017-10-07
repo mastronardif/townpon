@@ -15,16 +15,20 @@ import { CharttwoComponent }   from './charttwo/charttwo.component';
 import { TowndetailComponent } from './towndetail/towndetail.component';
 import { TownroutesRoutingModule } from './townroutes/townroutes-routing.module';
 import { StoredetailComponent } from './storedetail/storedetail.component';
+import { StoregridComponent } from './storegrid/storegrid.component';
 import { BigdummyComponent } from './bigdummy/bigdummy.component';
 import { DataService } from './services/data.service';
+import { TableexComponent } from './tableex/tableex.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CharttwoComponent,
     TowndetailComponent,
+    BigdummyComponent,
     StoredetailComponent,
-    BigdummyComponent    
+    StoregridComponent,
+    TableexComponent,
   ],
   entryComponents: [BigdummyComponent],
   imports: [
@@ -36,7 +40,7 @@ import { DataService } from './services/data.service';
     NgxChartsModule,
     BrowserAnimationsModule,
     MdToolbarModule,
-    MdCardModule,
+    MdCardModule,    
     MdSnackBarModule,    
     TownroutesRoutingModule
   ],

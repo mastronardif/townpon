@@ -38,7 +38,9 @@ export class AppComponent implements OnInit {
     this.getCoupon('Add an establishment. ');
   }
 
-  adminSelectTown() {
+  adminSelectTown(idType) {
+    console.log(`adminSelectTown(${idType})`);
+
     let id='b'+Date.now();
     console.log(':adminAddSelectTown', id);
  
@@ -46,10 +48,18 @@ export class AppComponent implements OnInit {
     this.router.navigate(link, { replaceUrl: false, skipLocationChange: true });
   }
 
-  adminAddStoreDetail() {
-    console.log('adminAddStoreDetail');
-    let id = 'tbd_id';
+  adminAddStoreDetail(id) {
+    console.log(`adminAddStoreDetail(${id})`);
     let link = ['/store', id];
+
+    if (id === 'gridList') {
+      id = this.town;
+      link = ['/storeAsaGrid', id];
+    }
+
+    //console.log('adminAddStoreDetail');
+    //let id = 'tbd_id';
+    
     //this.router.navigate(link);
     this.router.navigate(link, { replaceUrl: false, skipLocationChange: true });
     

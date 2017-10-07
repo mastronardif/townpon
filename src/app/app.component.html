@@ -1,30 +1,28 @@
-<div style="color: gray">
 
-<md-toolbar style="font-size: 40%" color="primary">
-         
-
-
+<md-toolbar style="height:30px;" color="primary">
+               
     <md-icon class="example-icon" (click)="adminAddStoreDetail()">favorite</md-icon>
     <a routerLink="/">
         <md-icon class="example-icon">home</md-icon> 
     </a>
 
-    <button md-button id="admin" name="admin" md-raised-button (click)="adminTown($event)">
+    <button md-button id="admin" name="admin" md-raised-button color="accent" (click)="adminTown($event)">
             T</button>
 
-    <button md-button id="s1" name="s1" md-raised-button (click)="sendMsg($event)">
+    <button md-button id="s1" name="s1" md-primary (click)="sendMsg($event)">
                 S1</button>      
-    <button md-button id="s1" name="s2" md-raised-button (click)="sendMsg($event)">
+    <button md-button id="s1" name="s2"  (click)="sendMsg($event)">
                 S2</button> 
                 
-    <span style="font-size: 170%">{{town}} </span>
+    <span>{{town}} </span>
 
     <span class="example-spacer"></span>
     <md-icon class="material-icon" (click)="adminSelectTown()">search</md-icon>
 
-    <button md-raised-button color="accent" (click)="adminAddStoreDetail()">
+    <button md-raised-button color="accent" (click)="adminAddStoreDetail('gridList')">
         <i class="material-icons">add_circle_outline</i>Store</button>        
+        
 </md-toolbar>       
 <router-outlet></router-outlet>
 <span style="font-size: 40%">v0.13 &copy; 2017 Gracy girl enterprises</span> 
-</div>
+

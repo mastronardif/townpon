@@ -1,0 +1,62 @@
+<div class="example-container">
+    <div class="example-header">
+        
+      <md-form-field floatPlaceholder="never">
+        Tics:
+        <md-slider class="example-margin" 
+        [invert]="slider.invert" [max]="slider.max" [min]="slider.min" 
+        [step]="slider.step" [value]="slider.value" [vertical]="slider.vertical" 
+        [thumbLabel]="slider.thumbLabel"        
+        tickInterval="1"
+        (input)="updateValueImme($event)" (change)="updateValue($event)"          
+        #slider1 ng-model="timerTickSize">
+        </md-slider>
+        {{timerTickSize}} Tics {{ slider1.value.toFixed(1)}}
+        
+        <input mdInput #filter placeholder="Filter users">
+      </md-form-field>
+    </div>
+  
+    
+    
+    <md-table #table [dataSource]="dataSource">
+  
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+  
+      <!-- ID Column -->
+      <ng-container mdColumnDef="userId">
+        <md-header-cell *mdHeaderCellDef> ID </md-header-cell>
+        <md-cell *mdCellDef="let row">           
+        <a style="cursor: pointer;" id="{{row.id}}" (click)="myEvent($event)">{{row.id}}</a>
+<!--
+  {{row.id}}
+          <button md-button id="admin" name="admin" md-raised-button (click)="myEvent($event)">
+              {{row.id}}</button>
+          -->       
+        </md-cell>
+      </ng-container>
+  
+      <!-- Progress Column -->
+      <ng-container mdColumnDef="progress">
+        <md-header-cell *mdHeaderCellDef> Coupons  </md-header-cell>
+        <md-cell *mdCellDef="let row"> {{row.progress}}% </md-cell>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container mdColumnDef="userName">
+        <md-header-cell *mdHeaderCellDef> Name </md-header-cell>
+        <md-cell *mdCellDef="let row"> {{row.name}} </md-cell>
+      </ng-container>
+  
+      <!-- Color Column -->
+      <ng-container mdColumnDef="color">
+        <md-header-cell *mdHeaderCellDef> Chomp Code </md-header-cell>
+        <md-cell *mdCellDef="let row" [style.color]="row.color"> {{row.color}} </md-cell>
+      </ng-container>
+  
+      <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+      <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+    </md-table>
+  </div>
+  
