@@ -57,6 +57,11 @@ export class AppComponent implements OnInit {
       link = ['/storeAsaGrid', id];
     }
 
+    if (id === 'gridDashboard') {
+      id = this.town;
+      link = ['/storeAsaDashboard', id];
+    }
+
     //console.log('adminAddStoreDetail');
     //let id = 'tbd_id';
     

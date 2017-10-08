@@ -19,6 +19,7 @@ import { StoregridComponent } from './storegrid/storegrid.component';
 import { BigdummyComponent } from './bigdummy/bigdummy.component';
 import { DataService } from './services/data.service';
 import { TableexComponent } from './tableex/tableex.component';
+import { StoredashboardComponent } from './storedashboard/storedashboard.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { TableexComponent } from './tableex/tableex.component';
     StoredetailComponent,
     StoregridComponent,
     TableexComponent,
+    StoredashboardComponent,
   ],
   entryComponents: [BigdummyComponent],
   imports: [

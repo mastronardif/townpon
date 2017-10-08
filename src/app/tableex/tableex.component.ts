@@ -104,7 +104,7 @@ export class TableexComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    console.log(`\t ** tableex.component:ngOnDestroy, this.st.delTimer(${this.timerName}), sttv= ${JSON.stringify(this.sttv)}`);
+    //console.log(`\t ** tableex.component:ngOnDestroy, this.st.delTimer(${this.timerName}), sttv= ${JSON.stringify(this.sttv)}`);
     this.st.delTimer(this.timerName);
   }
 

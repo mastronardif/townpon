@@ -1,0 +1,45 @@
+<div style="height:600px; font-size: 50%"> 
+    
+    <md-grid-list cols="4" rowHeight="100px">
+      <md-grid-tile
+          *ngFor="let tile of tiles"
+          [colspan]="tile.cols"
+          [rowspan]="tile.rows"
+          [style.background]="tile.color">
+    
+          <p>
+              {{tile.stuff}}
+          <button (click)="wtf('sss')">Home <i class="material-icons">home</i></button>
+          
+        {{tile.text}} <button> ass </button>
+        <a routerLink="/">
+          <md-icon class="example-icon">Take me home.</md-icon> 
+      </a>
+       </p> 
+      </md-grid-tile>
+    </md-grid-list>
+    
+    <md-grid-list cols="2" rowHeight="3:1">
+        <md-grid-tile>
+        <button (click)="randomize(strNums)">Randomize</button>        
+         <textarea mdInput placeholder="numbers" [(ngModel)]="strNums">{{strNums}}</textarea>
+         
+        </md-grid-tile>
+        <md-grid-tile>Randomized <br/>
+            <p>
+            {{nums}}
+            </p>
+        </md-grid-tile>
+        <md-grid-tile>3
+    --- table ----
+        </md-grid-tile>
+    
+        <md-grid-tile>4
+                
+        </md-grid-tile>
+      </md-grid-list>
+    
+    
+    
+    
+    </div>
