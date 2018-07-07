@@ -1,8 +1,9 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
-import 'rxjs/add/operator/map';
+
 import 'rxjs/Rx';
 import { environment } from '../../environments/environment';
 class Book {
@@ -29,7 +30,7 @@ export class TownService {
       }
     ]
   };
-  constructor(private http: Http, private httpClient: HttpClient) { }
+  constructor(private http: Http) { }
 
   public generateRandomCoupon() {
     let coupon: string;
@@ -59,22 +60,23 @@ export class TownService {
 
     //console.log('here', url);
 
-    return this.http.get(url).map(
+    //return this.http.get(url).pipe(map(
+	return this.http.get(url).pipe(map(	
       res => {
         let results = {}; //[];//[{name: "Fred", value: 123123}];
-        const data = res.json();
+        var data = res.json();
         let coupon = this.generateRandomCoupon();
         let items = [];
         if (res) {
-          //data.items.forEach(element => {
           data.drinks.forEach(element => {
+          //res.drinks.forEach(element => {
             //let val = element.id;
             let val = element.idDrink.toString().substring(0, 6);
             results = { coupon, name: element.strDrink, value: val, id: element.idDrink, thumb: element.strDrinkThumb };
           });
         }
         return results; //.slice(0, 21); //{lef:111, right: 222};//data;      
-      });
+      }));
 
   }
 
@@ -90,7 +92,7 @@ export class TownService {
         const data = res.json();
         let items = [];
         if (res) {
-          data.forEach(element => {
+			      data.forEach(element => {
             let val = element.value.toString().substring(0, 6);            
             //results.push({ name: element.name, value: val });
             results.push({ name: element.name, value: element.value });
@@ -159,11 +161,11 @@ export class TownService {
 
     //console.log('here', url);
 
-    return this.http.get(url).map(
+    return this.http.get(url).pipe(map(
       res => {
         let results = [];//[{name: "Fred", value: 123123}];
         const data = res.json();
-        let items = [];
+        //let items = [];
         if (res) {
           //data.items.forEach(element => {
           data.drinks.forEach(element => {
@@ -176,7 +178,7 @@ export class TownService {
         //console.log(`data =  ${JSON.stringify(data)}`);
 
         return results.slice(0, 21); //{lef:111, right: 222};//data;      
-      });
+      }));
 
   }
 

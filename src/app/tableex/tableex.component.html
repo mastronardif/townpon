@@ -1,62 +1,54 @@
 <div class="example-container">
     <div class="example-header">
         
-      <md-form-field floatPlaceholder="never">
+      <mat-form-field floatPlaceholder="never">
         Tics:
-        <md-slider class="example-margin" 
-        [invert]="slider.invert" [max]="slider.max" [min]="slider.min" 
+        <mat-slider class="example-margin" 
+         [max]="slider.max" [min]="slider.min"  
         [step]="slider.step" [value]="slider.value" [vertical]="slider.vertical" 
         [thumbLabel]="slider.thumbLabel"        
         tickInterval="1"
         (input)="updateValueImme($event)" (change)="updateValue($event)"          
-        #slider1 ng-model="timerTickSize">
-        </md-slider>
-        {{timerTickSize}} Tics {{ slider1.value.toFixed(1)}}
-        
-        <input mdInput #filter placeholder="Filter users">
-      </md-form-field>
+        >
+        </mat-slider>
+        <input matInput #filter placeholder="Filter users">
+      </mat-form-field>
     </div>
   
     
-    
-    <md-table #table [dataSource]="dataSource">
-  
-      <!--- Note that these columns can be defined in any order.
-            The actual rendered columns are set as a property on the row definition" -->
-  
-      <!-- ID Column -->
-      <ng-container mdColumnDef="userId">
-        <md-header-cell *mdHeaderCellDef> ID </md-header-cell>
-        <md-cell *mdCellDef="let row">           
-        <a style="cursor: pointer;" id="{{row.id}}" (click)="myEvent($event)">{{row.id}}</a>
-<!--
-  {{row.id}}
-          <button md-button id="admin" name="admin" md-raised-button (click)="myEvent($event)">
-              {{row.id}}</button>
-          -->       
-        </md-cell>
-      </ng-container>
-  
-      <!-- Progress Column -->
-      <ng-container mdColumnDef="progress">
-        <md-header-cell *mdHeaderCellDef> Coupons  </md-header-cell>
-        <md-cell *mdCellDef="let row"> {{row.progress}}% </md-cell>
-      </ng-container>
-  
-      <!-- Name Column -->
-      <ng-container mdColumnDef="userName">
-        <md-header-cell *mdHeaderCellDef> Name </md-header-cell>
-        <md-cell *mdCellDef="let row"> {{row.name}} </md-cell>
-      </ng-container>
-  
-      <!-- Color Column -->
-      <ng-container mdColumnDef="color">
-        <md-header-cell *mdHeaderCellDef> Chomp Code </md-header-cell>
-        <md-cell *mdCellDef="let row" [style.color]="row.color"> {{row.color}} </md-cell>
-      </ng-container>
-  
-      <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
-      <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
-    </md-table>
+    <mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSource"
+    matSort matSortActive="seqNo" matSortDirection="asc" matSortDisableClear>
+
+<ng-container matColumnDef="seqNo">
+
+ <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
+
+ <mat-cell *matCellDef="let lesson">{{lesson.seqNo}}</mat-cell>
+
+</ng-container>
+
+<ng-container matColumnDef="description">
+
+ <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+
+ <mat-cell class="description-cell"
+           *matCellDef="let lesson">{{lesson.description}}</mat-cell>
+
+</ng-container>
+
+<ng-container matColumnDef="duration">
+
+ <mat-header-cell *matHeaderCellDef>Duration</mat-header-cell>
+
+ <mat-cell class="duration-cell"
+           *matCellDef="let lesson">{{lesson.duration}}</mat-cell>
+
+</ng-container>
+
+<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+<mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+</mat-table>
   </div>
   

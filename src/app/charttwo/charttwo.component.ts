@@ -1,3 +1,5 @@
+
+import {switchMap} from 'rxjs/operators';
 import { Component, OnInit, Directive, ElementRef } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { single } from  './westfieldfood1';
@@ -8,7 +10,7 @@ import { ColorHelper } from '../../common/color.helper';
 import { colorSets } from '../../utils/color-sets';
 import { Router }      from '@angular/router';
 import { ActivatedRoute, ParamMap} from '@angular/router';
-import { MdSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 
 import { TowndetailComponent }  from '../towndetail/towndetail.component';
 import { StoredetailComponent } from '../storedetail/storedetail.component';
@@ -57,7 +59,7 @@ export class CharttwoComponent implements OnInit {
   };
 
   constructor(private data: DataService, private townService: TownService,
-    public snackBar: MdSnackBar,
+    public snackBar: MatSnackBar,
     private route: ActivatedRoute,
     private router: Router, 
     el: ElementRef) {     
@@ -84,7 +86,7 @@ export class CharttwoComponent implements OnInit {
     //this.data.currentMessage.subscribe(message => this.town = message+'uuu');
     console.log('charttwo:ngOnInit()');
     console.log(`***this.data.mySession = ${JSON.stringify(this.data.mySession)}`);
-    
+    //return;
     // FM begin
     this.msg22$ = this.data.currentMessage22.subscribe(message => {
       console.log("\* currentMessage22: "+message);
@@ -101,8 +103,8 @@ export class CharttwoComponent implements OnInit {
     // FM end
     console.log(`this.route.params=${JSON.stringify(this.route.params)}`);
     
-    this.route.paramMap
-    .switchMap((params: ParamMap) => this.townService.searchTown(params.get('id')))
+    this.route.paramMap.pipe(
+    switchMap((params: ParamMap) => this.townService.searchTown(params.get('id'))))
     .subscribe(res => {this.single2 = res; 
       this.s2();
       this.setColors('RANDOM'); 

@@ -1,14 +1,20 @@
+
+import {BehaviorSubject } from 'rxjs';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { DataSource } from '@angular/cdk/collections';
-import { Router }      from '@angular/router';
-import { ActivatedRoute, ParamMap} from '@angular/router';
-import { TownService } from '../services/town.service';
+//import { DataSource } from '@angular/cdk/collections';
+import {LessonsDataSource} from "../services/lessons.datasource";
+//import { TownService } from '../services/town.service';
+import { CoursesService } from '../services/courses.service';
+
 import { SimpleTimer } from 'ng2-simple-timer'
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
+
+
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
+//import { map, take } from 'rxjs/operators';
+//import { of } from 'rxjs/observable/of';
+
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
@@ -22,9 +28,8 @@ import 'rxjs/add/operator/switchMap';
 })
 export class TableexComponent implements OnInit {
 
-  displayedColumns = ['userId', 'userName', 'progress', 'color'];
-  exampleDatabase = new ExampleDatabase();
-  dataSource: ExampleDataSource | null;
+  dataSource: LessonsDataSource;
+  displayedColumns= ["seqNo", "description", "duration"];
 
   // timer stuff
   sttv = {
@@ -45,7 +50,7 @@ export class TableexComponent implements OnInit {
   slider = {
     autoTicks: false,
     disabled: false,
-    invert: false,
+    //invert: false,
     max: 2,
     min: .1,    
     showTicks: true,
@@ -58,9 +63,7 @@ export class TableexComponent implements OnInit {
   @ViewChild('filter') filter: ElementRef;
 
   constructor(private st: SimpleTimer,
-              private townService: TownService,
-              private route: ActivatedRoute,
-              private router: Router) { 
+              private coursesService: CoursesService) { 
                 this.sttv.st = st;
                 console.log(`\t ** tableex.component.ts:constructor, ${JSON.stringify(this.sttv)}`);
                 
@@ -68,39 +71,16 @@ export class TableexComponent implements OnInit {
 
   ngOnInit() {
     console.log(`\t ** tableex.component:ngOnInit timerName= ${this.timerName}, sttv= ${JSON.stringify(this.sttv)}`);
-    this.dataSource = new ExampleDataSource(this.exampleDatabase);
+    //this.course = this.route.snapshot.data["course"];
+    this.dataSource = new LessonsDataSource(this.coursesService);
+    this.dataSource.loadLessons(1, '', 'asc', 0, 3);
 
-    Observable.fromEvent(this.filter.nativeElement, 'keyup')
-        .debounceTime(150)
-        .distinctUntilChanged()
-        .subscribe(() => {
-          if (!this.dataSource) { return; }
-          this.dataSource.filter = this.filter.nativeElement.value;
-        });
 
         // Simulate real time with a dummy timmer.
-        this.st.newTimer(this.timerName, this.sttv.timerTickSize);
-        if (true) {
-          this.startTimer0();
-        }
-
-
-        this.route.paramMap
-        .switchMap((params: ParamMap) => this.townService.searchTown(params.get('id')))
-        .subscribe(res => {
-          console.log('res =', res);
-          // update data names
-          let idx = 0;
-          res.forEach(element => {console.log(element.name);            
-            this.exampleDatabase.data[idx++].name=element.name;
-            this.exampleDatabase.data[idx].name=`ZZZZZ ${idx} YYYY`;
-            
-          });      
-        console.log('*\t* table ex * this.route.paramMap');
-        
-        //this.tellEveryoneAboutTown(('wtf')); 
-      });
-
+        // this.st.newTimer(this.timerName, this.sttv.timerTickSize);
+        // if (true) {
+        //   this.startTimer0();
+        // }
   }
 
   ngOnDestroy() {
@@ -108,7 +88,7 @@ export class TableexComponent implements OnInit {
     this.st.delTimer(this.timerName);
   }
 
-  resetTimer(ticSize: number) {
+  resetTimer() {
     //debugger;
     this.stopTimer0();
     this.sttv.timerTickSize = this.slider.value;
@@ -168,7 +148,7 @@ export class TableexComponent implements OnInit {
     let idx = Math.floor(Math.random() * i);
     console.log(`idx= ${idx}`);
 
-    this.exampleDatabase.data[idx].progress = this.timerCounter0.toString(); // idx.toString();
+    //this.exampleDatabase.data[idx].progress = this.timerCounter0.toString(); // idx.toString();
   }  
 
   myEvent(event) {
@@ -177,7 +157,7 @@ export class TableexComponent implements OnInit {
     //console.log("exampleDatabase.data= ", this.exampleDatabase.data);
     if (id === '1') {
       this.timerCounter0 = 0;
-      this.exampleDatabase.data[0].progress = '87';
+      //this.exampleDatabase.data[0].progress = '87';
 
       console.log(`this.slider.value= ${this.slider.value}`);
 
@@ -202,11 +182,11 @@ export class TableexComponent implements OnInit {
 //    console.log(`* 2 * this.slider.value= ${this.slider.value}`);
 
     console.log(`** updateValue: ${this.sttv.timerTickSize} , ${this.slider.value}`);
-    {      
-    //this.st.getTimer().
-    this.resetTimer(this.slider.value);
-    this.sttv.timerTickSize = this.slider.value;
-    }
+    // {
+    //   //this.st.getTimer().
+    //   this.resetTimer(this.slider.value);
+    //   this.sttv.timerTickSize = this.slider.value;
+    // }
   }
   // slider end
 }
@@ -276,29 +256,29 @@ private createNewUser() {
 * the underlying data. Instead, it only needs to take the data and send the table exactly what
 * should be rendered.
 */
-export class ExampleDataSource extends DataSource<any> {
-_filterChange = new BehaviorSubject('');
-get filter(): string { return this._filterChange.value; }
-set filter(filter: string) { this._filterChange.next(filter); }
+// export class ExampleDataSource extends DataSource<any> {
+// _filterChange = new BehaviorSubject('');
+// get filter(): string { return this._filterChange.value; }
+// set filter(filter: string) { this._filterChange.next(filter); }
 
-constructor(private _exampleDatabase: ExampleDatabase) {
-  super();
-}
+// constructor(private _exampleDatabase: ExampleDatabase) {
+//   super();
+// }
 
-/** Connect function called by the table to retrieve one stream containing the data to render. */
-connect(): Observable<UserData[]> {
-  const displayDataChanges = [
-    this._exampleDatabase.dataChange,
-    this._filterChange,
-  ];
+// /** Connect function called by the table to retrieve one stream containing the data to render. */
+// connect(): Observable<UserData[]> {
+//   const displayDataChanges = [
+//     this._exampleDatabase.dataChange,
+//     this._filterChange,
+//   ];
 
-  return Observable.merge(...displayDataChanges).map(() => {
-    return this._exampleDatabase.data.slice().filter((item: UserData) => {
-      let searchStr = (item.name + item.color).toLowerCase();
-      return searchStr.indexOf(this.filter.toLowerCase()) != -1;
-    });
-  });
-}
+//   return observableMerge(...displayDataChanges).pipe(map(() => {
+//     return this._exampleDatabase.data.slice().filter((item: UserData) => {
+//       let searchStr = (item.name + item.color).toLowerCase();
+//       return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+//     });
+//   }));
+// }
 
-disconnect() {}
-}
+// disconnect() {}
+// }

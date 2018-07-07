@@ -1,4 +1,6 @@
-import 'rxjs/add/operator/switchMap';
+
+import {switchMap} from 'rxjs/operators';
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap} from '@angular/router';
 import { Location } from '@angular/common';
@@ -47,11 +49,11 @@ export class TowndetailComponent implements OnInit {
       
     //FM research this.  It looks like it calls the route at init time.
     // Alex ?
-    this.route.paramMap    
-      .switchMap((params: ParamMap) => ( this.param = params.get('id'),  
+    this.route.paramMap.pipe(    
+      switchMap((params: ParamMap) => ( this.param = params.get('id'),  
         console.log(`this.param = ${this.param}`),
         this.townService.getCoupon(String(+params.get('id'))) )
-      )
+      ))
       .subscribe(res => {  
         console.log(`** this.param = ${this.param}`);    
         console.log("towndetail.component.ts this.route.paramMap", res);

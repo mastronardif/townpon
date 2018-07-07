@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
 body{
     font-family: 'RobotoDraft', 'Roboto', 'Helvetica Neue, Helvetica, Arial', sans-serif;
     text-align: center;
@@ -18,3 +19,8 @@ body{
   @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
   
   
+body { margin: 0; }
+
+body { margin: 0; }
+
+body { margin: 0; }

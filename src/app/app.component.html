@@ -1,30 +1,30 @@
 
-<md-toolbar style="height:30px;" color="primary">
+<mat-toolbar style="height:30px;" color="primary">
                
-    <md-icon class="example-icon" (click)="adminAddStoreDetail()">favorite</md-icon>
-    <a routerLink="/">
-        <md-icon class="example-icon">home</md-icon> 
-    </a>
+  <mat-icon class="example-icon" (click)="adminAddStoreDetail('')">favorite</mat-icon>
+  <a routerLink="/">
+      <mat-icon class="example-icon">home</mat-icon> 
+  </a>
 
-    <button md-button id="admin" name="admin" md-raised-button color="accent" (click)="adminTown($event)">
-            T</button>
+  <button mat-button id="admin" name="admin" mat-raised-button color="accent" (click)="adminTown($event)">
+          T</button>
 
-    <button md-button id="s1" name="s1" md-primary (click)="sendMsg($event)">
-                S1</button>      
-    <button md-button id="s1" name="s2"  (click)="sendMsg($event)">
-                S2</button> 
-                
-    <span>{{town}} </span>
+  <button mat-button id="s1" name="s1" mat-primary (click)="sendMsg($event)">
+              S1</button>      
+  <button mat-button id="s1" name="s2"  (click)="sendMsg($event)">
+              S2</button> 
+              
+  <span style="margin-left: 5px;">{{town}} </span>
 
-    <span class="example-spacer"></span>
-    <md-icon class="material-icon" (click)="adminAddStoreDetail('gridList')">view_list</md-icon>
-    <md-icon class="material-icon" (click)="adminAddStoreDetail('gridDashboard')">dashboard</md-icon>
-    <md-icon class="material-icon" (click)="adminSelectTown()">search</md-icon>
+  <span class="example-spacer"></span>
+  <mat-icon class="material-icon" (click)="adminAddStoreDetail('gridList')">view_list</mat-icon>
+  <mat-icon class="material-icon" (click)="adminAddStoreDetail('gridDashboard')">dashboard</mat-icon>
+  <mat-icon class="material-icon" (click)="adminSelectTown('')">search</mat-icon>
 
-    <button md-raised-button color="accent" (click)="adminAddStoreDetail('addStore')">
-        <i class="material-icons">add_circle_outline</i>Store</button>        
-        
-</md-toolbar>       
+  <button mat-raised-button color="accent" (click)="adminAddStoreDetail('addStore')">
+      <i class="material-icons">add_circle_outline</i>Store</button>        
+      
+</mat-toolbar>       
 <router-outlet></router-outlet>
 <span style="font-size: 40%">v0.13 &copy; 2017 Gracy girl enterprises</span> 
 
