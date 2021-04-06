@@ -79,8 +79,8 @@ export class TowndetailComponent implements OnInit {
   }
 
   stopTimer0() { 
-    this.param= "";
-    this.timerCounter0 = 0;      
+    this.param= '';
+    this.timerCounter0 = 0;
     this.unsubscribeTimer();
   }
 
