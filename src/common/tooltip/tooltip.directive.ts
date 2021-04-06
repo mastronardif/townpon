@@ -86,7 +86,7 @@ export class TooltipDirective implements OnDestroy {
 
   @HostListener('mouseleave', ['$event.target'])
   onMouseLeave(target): void {
-    if(this.listensForHover && this.tooltipCloseOnMouseLeave) {
+    if (this.listensForHover && this.tooltipCloseOnMouseLeave) {
       clearTimeout(this.timeout);
 
       if (this.component) {
