@@ -30,12 +30,12 @@ export function sortByTime(data, property, direction = 'asc') {
     const bDate = b[property].getTime();
 
     if (direction === 'asc') {
-      if (aDate > bDate) return 1;
-      if (bDate > aDate) return -1;
+    if (aDate > bDate) { return 1 }
+      if (bDate > aDate) { return -1 }
       return 0;
     } else {
-      if (aDate > bDate) return -1;
-      if (bDate > aDate) return 1;
+      if (aDate > bDate) { return -1} 
+      if (bDate > aDate) { return 1 };
       return 0;
     }
   });
