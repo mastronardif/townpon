@@ -5,6 +5,8 @@ stages {
 stage("build") {
    steps {
       echo 'building the application... BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'
+        sh 'npm install'
+        sh 'npm run build --prod'
    }
 }
 
