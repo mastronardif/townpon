@@ -1,10 +1,16 @@
 
 pipeline  {
 agent any
+
+  tools {
+    // Install Node.js and npm using the Jenkins Global Tool Configuration
+    nodejs 'NodeJS16'
+  }
+
 stages {
 stage("build") {
    steps {
-      echo 'building the application... BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'
+      echo 'building the application... 5/4/23 637 PM last modified'
         sh 'npm install'
         sh 'npm run build --prod'
    }
