@@ -10,11 +10,20 @@ agent any
 stages {
 stage("build") {
    steps {
-      echo 'building the application... 5/4/23 637 PM last modified'
+      echo 'building the application... 5/5/23 737 PM last modified'
         sh 'npm install'
         sh 'npm run build --prod'
    }
 }
+
+stage('Create Archive') {
+      steps {
+        echo 'Create Archive... 5/6/23 543 PM last modified'
+        sh 'zip -r myarchive.zip *'
+      }
+   //zip -r myarchive.zip target/*.jar
+}
+
 
 stage("test") {
    steps {
