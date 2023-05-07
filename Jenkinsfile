@@ -4,7 +4,7 @@ agent any
 
   tools {
     // Install Node.js and npm using the Jenkins Global Tool Configuration
-    nodejs 'NodeJS16',
+    nodejs 'NodeJS16'
 
     // Install the zip package on the agent
     zip 'zip'
