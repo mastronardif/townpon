@@ -7,7 +7,7 @@ agent any
     nodejs 'NodeJS16'
 
     // Install the zip package on the agent
-    zip 'zip'
+    //zip 'zip'
   }
 
 stages {
@@ -21,8 +21,9 @@ stage("build") {
 
 stage('Create Archive') {
       steps {
-        echo 'Create Archive... 5/6/23 543 PM last modified'
-        sh 'zip -r myarchive.zip *'
+        echo 'Create Archive... 5/7/23 1135 AM last modified'
+        //sh 'zip -r myarchive.zip *'
+        sh 'tar -czf myarchive.tar.gz *'
       }
    //zip -r myarchive.zip target/*.jar
 }
