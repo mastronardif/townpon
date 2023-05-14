@@ -1,0 +1,27 @@
+---
+pipeline:
+  agent:
+    any
+  tools:
+    nodejs: NodeJS16
+  stages:
+    - stage:
+        name: "build"
+        steps:
+          - echo: "building the application... 5/13/23 737 PM last modified"
+          - sh: "npm install"
+          - sh: "npm run build --prod"
+    - stage:
+        name: "Create Archive"
+        steps:
+          - echo: "Create Archive... 5/13/23 1135 AM last modified"
+          - sh: "tar -czf myarchive.tar.gz *"
+    - stage:
+        name: "test"
+        steps:
+          - echo: "testing the application..."
+    - stage:
+        name: "deploy"
+        steps:
+          - echo: "deploying the application..."
+...
