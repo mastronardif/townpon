@@ -13,15 +13,16 @@ agent any
 stages {
 stage("build") {
    steps {
-      echo 'building the application... 5/5/23 737 PM last modified'
+      echo 'building the application... 5/14/23 753 PM last modified'
         sh 'npm install'
         sh 'npm run build --prod'
+        sh 'pwd'
    }
 }
 
 stage('Create Archive') {
       steps {
-        echo 'Create Archive... 5/7/23 1135 AM last modified'
+        echo 'Create Archive... 5/14/23 754 PM last modified'
         //sh 'zip -r myarchive.zip *'
         sh 'tar -czf myarchive.tar.gz *'
       }
