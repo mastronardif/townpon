@@ -8,14 +8,15 @@ pipeline:
     - stage:
         name: "build"
         steps:
-          - echo: "building the application... 5/13/23 737 PM last modified"
+          - echo: "building the application... 5/14/23 737 PM last modified"
           - sh: "npm install"
           - sh: "npm run build --prod"
     - stage:
         name: "Create Archive"
         steps:
-          - echo: "Create Archive... 5/13/23 1135 AM last modified"
+          - echo: "Create Archive... 5/17/23 737 PM last modified"
           - sh: "tar -czf myarchive.tar.gz *"
+          - sh "pwd"
     - stage:
         name: "test"
         steps:
